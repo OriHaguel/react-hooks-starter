@@ -9,12 +9,17 @@
      letter-spacing: normal;
      text-align: start;
      line-height: normal;
-
+     /* box-shadow: rgba(47, 69, 92, 0.192) 0px -5px 0px 0px inset; */
+     transition: .2s;
+     /* box-shadow: inset rgba(47, 69, 92, 0.192) 2px -4px 5px 0px; */
+     cursor: pointer;
  }
 
  .mail-data:hover {
-     box-shadow: rgba(47, 69, 92, 0.192) 0px -1px 0px 0px inset;
 
+     scale: 1.018;
+     transform-origin: center;
+     box-shadow: inset rgba(47, 69, 92, 0.192) 3px -2px 1px 0px;
  }
 
  .mail-data-container> :first-child {
