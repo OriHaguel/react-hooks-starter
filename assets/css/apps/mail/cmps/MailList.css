@@ -1,1 +1,26 @@
  /* mail list */
+
+ .mail-data {
+     display: flex;
+     padding: 10px 0px;
+     background-color: #ffffff;
+     margin-bottom: 1px;
+     font-size: 16px;
+     letter-spacing: normal;
+     text-align: start;
+     line-height: normal;
+
+ }
+
+ .mail-data:hover {
+     box-shadow: rgba(47, 69, 92, 0.192) 0px -1px 0px 0px inset;
+
+ }
+
+ .mail-data-container> :first-child {
+     margin-top: .7px;
+ }
+
+ .mail-data-container {
+     background-color: rgb(128, 128, 128);
+ }
