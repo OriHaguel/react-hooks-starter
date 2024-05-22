@@ -21,43 +21,43 @@ _createEmails()
 
 function query(filterBy = {}) {
     return storageService.query(KEY)
-        .then(cars => {
+        .then(mails => {
             if (filterBy.txt) {
                 const regExp = new RegExp(filterBy.txt, 'i')
-                cars = cars.filter(car => regExp.test(car.vendor))
+                mails = mails.filter(mail => regExp.test(mail.vendor))
             }
 
             if (filterBy.minSpeed) {
-                cars = cars.filter(car => car.maxSpeed >= filterBy.minSpeed)
+                mails = mails.filter(mail => mail.maxSpeed >= filterBy.minSpeed)
             }
 
-            return cars
+            return mails
         })
 }
 
-function get(bookId) {
-    return storageService.get(KEY, bookId)
-        .then(book => {
-            book = _setNextPrevBookId(book)
-            return book
+function get(mailId) {
+    return storageService.get(KEY, mailId)
+        .then(mail => {
+            mail = _setNextPrevmailId(mail)
+            return mail
         })
 }
 
-function addReview(bookId, reviewToSave) {
-    return get(bookId).then(book => {
+function addReview(mailId, reviewToSave) {
+    return get(mailId).then(mail => {
         const review = _createReview(reviewToSave)
-        book.reviews.unshift(review)
-        save(book)
+        mail.reviews.unshift(review)
+        save(mail)
         return Promise.resolve(review)
     })
 
 }
 
-function removeReview(bookId, reviewId) {
-    return get(bookId).then(book => {
-        const newReviews = book.reviews.filter((review) => review.id !== reviewId)
-        book.reviews = newReviews
-        save(book)
+function removeReview(mailId, reviewId) {
+    return get(mailId).then(mail => {
+        const newReviews = mail.reviews.filter((review) => review.id !== reviewId)
+        mail.reviews = newReviews
+        save(mail)
         return Promise.resolve()
     })
 }
@@ -69,29 +69,29 @@ function _createReview(reviewToSave) {
     }
 }
 
-function _setNextPrevBookId(book) {
-    return storageService.query(KEY).then((books) => {
-        const bookIdx = books.findIndex((currBook) => currBook.id === book.id)
-        const nextBook = books[bookIdx + 1] ? books[bookIdx + 1] : books[0]
-        const prevBook = books[bookIdx - 1] ? books[bookIdx - 1] : books[books.length - 1]
-        book.nextBookId = nextBook.id
-        book.prevBookId = prevBook.id
-        return book
+function _setNextPrevmailId(mail) {
+    return storageService.query(KEY).then((mails) => {
+        const mailIdx = mails.findIndex((currmail) => currmail.id === mail.id)
+        const nextmail = mails[mailIdx + 1] ? mails[mailIdx + 1] : mails[0]
+        const prevmail = mails[mailIdx - 1] ? mails[mailIdx - 1] : mails[mails.length - 1]
+        mail.nextmailId = nextmail.id
+        mail.prevmailId = prevmail.id
+        return mail
     })
 }
 
 
 
-function remove(bookId) {
-    return storageService.remove(KEY, bookId)
+function remove(mailId) {
+    return storageService.remove(KEY, mailId)
 
 }
 
-function save(book) {
-    if (book.id) {
-        return storageService.put(KEY, book)
+function save(mail) {
+    if (mail.id) {
+        return storageService.put(KEY, mail)
     } else {
-        return storageService.post(KEY, book)
+        return storageService.post(KEY, mail)
     }
 }
 
@@ -101,8 +101,8 @@ function getDefaultFilter() {
 }
 
 
-// function _saveBooksToStorage() {
-//     storageService.save(KEY, gBooks)
+// function _savemailsToStorage() {
+//     storageService.save(KEY, gmails)
 // }
 
 
@@ -136,13 +136,13 @@ function _createEmail() {
 }
 
 function _createEmails() {
-    let cars = storageServiceDb.loadFromStorage(KEY)
-    if (!cars || !cars.length) {
-        cars = []
+    let mails = storageServiceDb.loadFromStorage(KEY)
+    if (!mails || !mails.length) {
+        mails = []
         for (let i = 0; i < 6; i++) {
-            cars.push(_createEmail())
+            mails.push(_createEmail())
         }
-        storageServiceDb.saveToStorage(KEY, cars)
+        storageServiceDb.saveToStorage(KEY, mails)
     }
 }
 
