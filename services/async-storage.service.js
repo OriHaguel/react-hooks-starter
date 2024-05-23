@@ -25,6 +25,7 @@ function post(entityType, newEntity) {
     return query(entityType).then(entities => {
         entities.push(newEntity)
         _save(entityType, entities)
+        console.log(newEntity);
         return newEntity
     })
 }
