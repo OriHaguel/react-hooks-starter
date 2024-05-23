@@ -11,7 +11,7 @@ export function MailDetails() {
     const params = useParams()
     const navigate = useNavigate()
     const [mail, setMail] = useState();
-    console.log("🚀 ~ MailDetails ~ mail:", mail)
+
 
     useEffect(() => {
         // loadBook()

@@ -11,6 +11,7 @@ export const emailService = {
     remove,
     addReview,
     removeReview,
+    isRead,
 
 }
 
@@ -22,13 +23,18 @@ _createEmails()
 function query(filterBy = {}) {
     return storageService.query(KEY)
         .then(mails => {
-            if (filterBy.txt) {
-                const regExp = new RegExp(filterBy.txt, 'i')
+            if (filterBy.subject) {
+                const regExp = new RegExp(filterBy.subject, 'i')
                 mails = mails.filter(mail => regExp.test(mail.subject))
             }
+            console.log("🚀 ~ query ~ filterBy.isRead:", filterBy.isRead)
+            if (filterBy.isRead === 'true') {
 
-            if (filterBy.minSpeed) {
-                mails = mails.filter(mail => mail.maxSpeed >= filterBy.minSpeed)
+                mails = mails.filter(mail => mail.isRead === true)
+            }
+            if (filterBy.isRead === 'false') {
+
+                mails = mails.filter(mail => mail.isRead === false)
             }
 
             return mails
@@ -41,6 +47,19 @@ function get(mailId) {
             mail = _setNextPrevmailId(mail)
             return mail
         })
+}
+
+function isRead(mail) {
+    return get(mail.id)
+        .then(mail => {
+            mail.isRead = !mail.isRead
+            return Promise.resolve(mail)
+        }).then((mail) => {
+            save(mail)
+            return Promise.resolve(mail)
+        })
+
+
 }
 
 function addReview(mailId, reviewToSave) {
@@ -97,7 +116,7 @@ function save(mail) {
 
 
 function getDefaultFilter() {
-    return { title: '', price: 0 }
+    return { subject: '', isRead: null }
 }
 
 
@@ -125,7 +144,7 @@ const email = {
 function _createEmail() {
     return {
         id: utilService.makeId(),
-        subject: 'Miss you!',
+        subject: utilService.makeLorem(3),
         body: utilService.makeLorem(30),
         isRead: false,
         sentAt: 1551133930594,
