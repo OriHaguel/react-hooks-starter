@@ -52,7 +52,7 @@ function get(mailId) {
 function isRead(mail) {
     return get(mail.id)
         .then(mail => {
-            mail.isRead = !mail.isRead
+            mail.isRead = true
             return Promise.resolve(mail)
         }).then((mail) => {
             save(mail)

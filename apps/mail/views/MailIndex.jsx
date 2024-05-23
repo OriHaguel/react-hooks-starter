@@ -42,8 +42,8 @@ export function MailIndex() {
                 //     return prevMails
                 // })
 
-            })
-        // navigate(`/mail/${mail.id}`)
+            }).then(() => navigate(`/mail/${mail.id}`))
+
         // setMails(prevMails => prevMails.map(m =>  m.id === mail.id ? { ...m, isRead: !mail.isRead } : m))
 
 
