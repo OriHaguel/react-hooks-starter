@@ -5,7 +5,7 @@
      padding: 10px 0px;
      background-color: #ffffff;
      margin-bottom: 1px;
-     font-size: 14px;
+
      letter-spacing: normal;
      text-align: start;
      line-height: normal;
@@ -32,10 +32,13 @@
 
  .mail-data-container> :first-child {
      margin-top: .7px;
+     /* border-top-left-radius: 1000%; */
+
  }
 
  .mail-data-container {
      background-color: rgb(128, 128, 128);
+
  }
 
  .read {

@@ -12,6 +12,7 @@ export const emailService = {
     addReview,
     removeReview,
     isRead,
+    getFilterFromSearchParams,
 
 }
 
@@ -27,7 +28,7 @@ function query(filterBy = {}) {
                 const regExp = new RegExp(filterBy.subject, 'i')
                 mails = mails.filter(mail => regExp.test(mail.subject))
             }
-            console.log("🚀 ~ query ~ filterBy.isRead:", filterBy.isRead)
+
             if (filterBy.isRead === 'true') {
 
                 mails = mails.filter(mail => mail.isRead === true)
@@ -119,7 +120,13 @@ function getDefaultFilter() {
     return { subject: '', isRead: null }
 }
 
+function getFilterFromSearchParams(searchParams) {
+    return {
+        subject: searchParams.get('subject') || '',
+        isRead: searchParams.get('isRead') || '',
 
+    }
+}
 // function _savemailsToStorage() {
 //     storageService.save(KEY, gmails)
 // }

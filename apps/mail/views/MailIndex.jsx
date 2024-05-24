@@ -1,6 +1,7 @@
 import { emailService } from "../../../apps/mail/services/mail.service.js"
 import { MailFilter } from "../cmps/MailFilter.jsx"
 import { MailList } from "../cmps/MailList.jsx"
+import { MailNavbar } from "../cmps/mailNavbar.jsx"
 
 
 const { useParams, useNavigate, Link, useSearchParams } = ReactRouterDOM
@@ -11,11 +12,15 @@ const { useState, useEffect } = React
 export function MailIndex() {
     const [mails, setMails] = useState()
     const navigate = useNavigate()
-    const [filterBy, setFilterBy] = useState(emailService.getDefaultFilter())
+    const [searchParams, setSearchParams] = useSearchParams()
 
+    const [filterBy, setFilterBy] = useState(emailService.getFilterFromSearchParams(searchParams))
+    // const [filterBy, setFilterBy] = useState(emailService.getFilterFromSearchParams(searchParams))
+    // console.log("🚀 ~ MailIndex ~ searchParams:", searchParams)
 
 
     useEffect(() => {
+        setSearchParams(filterBy)
         renderMails()
 
     }, [filterBy])
@@ -63,10 +68,13 @@ export function MailIndex() {
     // }
 
     if (!mails) return <h1>loading...</h1>
-    return <section>
+    return <section >
+        <MailNavbar />
+        <section className="mail-main">
+            <MailFilter onSetFilter={onSetFilter} filterBy={filterBy} />
+            <MailList mails={mails} onSelect={onSelect} />
+        </section>
 
-        <MailFilter onSetFilter={onSetFilter} filterBy={filterBy} />
-        <MailList mails={mails} onSelect={onSelect} />
         {/* <Link to={`/books/edit/`}><button>Add a book</button></Link>
         <Link to={`/books/search/`}><button>Search a book</button></Link>
         <BookFilter filterBy={filterBy} onSetFilter={onSetFilter} />

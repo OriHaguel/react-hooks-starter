@@ -1,0 +1,70 @@
+:root {
+    --bg-nav: #f6f8fc;
+}
+
+.mail-main {
+    margin-left: 3.9rem;
+    font-size: 14px;
+    font-family: sans-serif;
+
+}
+
+.navbar {
+    width: 4rem;
+    height: 100vh;
+    position: fixed;
+    background-color: var(--bg-nav);
+    transition: width 200ms ease;
+    z-index: 1;
+
+}
+
+.navbar-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    height: 4rem;
+    text-decoration: none;
+}
+
+
+
+.nav-item {
+    width: 100%;
+}
+
+
+.link-text {
+    margin-left: 1rem;
+    display: none;
+    align-self: end;
+}
+
+.nav-link svg {
+    width: 1.2rem;
+    min-width: 1.2rem;
+    margin: 0 .7rem;
+    align-self: end;
+}
+
+.navbar:hover {
+    width: 16rem;
+}
+
+.navbar:hover .link-text {
+    display: block;
+}
+
+form {
+    background-color: var(--bg-nav);
+    padding-left: 12.15rem;
+    width: 100vw;
+}
