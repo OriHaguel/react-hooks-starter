@@ -154,7 +154,7 @@ function _createEmail() {
         subject: utilService.makeLorem(3),
         body: utilService.makeLorem(30),
         isRead: false,
-        sentAt: 1551133930594,
+        sentAt: utilService.getRandomTimestamp(),
         removedAt: null,
         from: 'momo@momo.com',
         to: 'user@appsus.com'

@@ -6,6 +6,8 @@ export const utilService = {
     padNum,
     getDayName,
     getMonthName,
+    getRandomTimestamp,
+    getDateDetails,
 }
 
 function makeId(length = 6) {
@@ -60,3 +62,48 @@ function getMonthName(date) {
     ]
     return monthNames[date.getMonth()]
 }
+
+
+
+function getRandomTimestamp() {
+    const currentDate = new Date()
+
+    const fiveYearsAgo = new Date()
+    fiveYearsAgo.setFullYear(currentDate.getFullYear() - 5)
+
+    const randomTimestamp = Math.floor(
+        Math.random() * (currentDate.getTime() - fiveYearsAgo.getTime()) + fiveYearsAgo.getTime()
+    )
+
+    return randomTimestamp
+}
+
+
+function getDateDetails(timestamp) {
+
+    const date = new Date(timestamp)
+
+
+    const monthNames = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ]
+
+
+    const day = date.getDate()
+
+
+    const monthName = monthNames[date.getMonth()]
+
+
+    const year = date.getFullYear()
+
+    return {
+        day: day,
+        monthName: monthName,
+        year: year
+    };
+}
+
+
+
