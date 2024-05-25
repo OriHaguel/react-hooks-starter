@@ -13,7 +13,7 @@ export const emailService = {
     removeReview,
     isRead,
     getFilterFromSearchParams,
-
+    getDefaultMail,
 }
 
 const KEY = 'mailDB'
@@ -119,6 +119,23 @@ function save(mail) {
 function getDefaultFilter() {
     return { subject: '', isRead: null }
 }
+
+function getDefaultMail() {
+    return {
+        subject: '',
+        body: '',
+        isRead: false,
+        sentAt: Date.now(),
+        removedAt: null,
+        from: 'momo@momo.com',
+        to: 'user@appsus.com'
+    }
+}
+
+// let what = Date.now()
+// console.log(what)
+
+
 
 function getFilterFromSearchParams(searchParams) {
     return {

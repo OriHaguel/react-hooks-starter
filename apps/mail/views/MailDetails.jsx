@@ -1,4 +1,5 @@
 import { emailService } from "../../../apps/mail/services/mail.service.js"
+import { showSuccessMsg } from "../../../services/event-bus.service.js"
 import { utilService } from "../../../services/util.service.js"
 
 
@@ -23,6 +24,7 @@ export function MailDetails() {
     function onRemoveMail(mailId) {
         emailService.remove(mailId)
             .then(() => onGoBack())
+            .then(() => showSuccessMsg('The mail is deleted!'))
     }
 
     function onGoBack() {

@@ -18,7 +18,7 @@ export function MailFilter({ filterBy, onSetFilter }) {
 
     }
 
-    return <form >
+    return <form className="filter">
         <label htmlFor="subject">title</label>
         <input value={filter.subject} type="text" id="subject" name="subject" placeholder="title" onChange={handleOnChange} />
 

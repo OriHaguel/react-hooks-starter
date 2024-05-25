@@ -43,28 +43,46 @@
 
 
 .link-text {
-    margin-left: 1rem;
+    margin-left: .5rem;
     display: none;
-    align-self: end;
+    /* align-self: end; */
 }
 
 .nav-link svg {
     width: 1.2rem;
     min-width: 1.2rem;
-    margin: 0 .7rem;
-    align-self: end;
+    margin: 0 .5rem;
 }
+
+
+/* .navbar-nav> :first-child svg,
+.navbar-nav> :first-child span {} */
+
+
+/* .navbar-nav> :first-child {
+    cursor: pointer;
+} */
+
 
 .navbar:hover {
     width: 16rem;
 }
 
+.navbar:hover .navbar-nav> :first-child {
+    background-color: #c2e7ff;
+    border-radius: 28%;
+
+    width: 50%;
+    align-self: start;
+}
+
+
 .navbar:hover .link-text {
     display: block;
 }
 
-form {
+.filter {
     background-color: var(--bg-nav);
     padding-left: 12.15rem;
-    width: 100vw;
+
 }

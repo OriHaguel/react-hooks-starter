@@ -1,7 +1,10 @@
 import { emailService } from "../../../apps/mail/services/mail.service.js"
+import { MailCompose } from "../cmps/MailCompose.jsx"
 import { MailFilter } from "../cmps/MailFilter.jsx"
 import { MailList } from "../cmps/MailList.jsx"
-import { MailNavbar } from "../cmps/mailNavbar.jsx"
+import { MailNavbar } from "../cmps/MailNavbar.jsx"
+
+
 
 
 const { useParams, useNavigate, Link, useSearchParams } = ReactRouterDOM
@@ -13,10 +16,8 @@ export function MailIndex() {
     const [mails, setMails] = useState()
     const navigate = useNavigate()
     const [searchParams, setSearchParams] = useSearchParams()
-
     const [filterBy, setFilterBy] = useState(emailService.getFilterFromSearchParams(searchParams))
-    // const [filterBy, setFilterBy] = useState(emailService.getFilterFromSearchParams(searchParams))
-    // console.log("🚀 ~ MailIndex ~ searchParams:", searchParams)
+    const [isShowReviewModal, setIsShowReviewModal] = useState(true)
 
 
     useEffect(() => {
@@ -55,24 +56,21 @@ export function MailIndex() {
 
     }
 
+    function onSave(mailToAdd) {
+        emailService.save(mailToAdd)
+            .then((mail) => setMails((prevMails) => ([...prevMails, mail])))
+        setIsShowReviewModal(false)
+    }
 
-
-    // function onRemove(mailId) {
-    //     emailService.remove(mailId)
-    //         .then(() => {
-    //             setMails(prevmail => prevmail.filter(mail => mail.id !== mailId))
-    //             showSuccessMsg('doesit work? no? yes? what ? stop...')
-    //         }
-
-    //         )
-    // }
 
     if (!mails) return <h1>loading...</h1>
     return <section >
-        <MailNavbar />
+        <MailNavbar setIsShowReviewModal={setIsShowReviewModal} />
         <section className="mail-main">
+
             <MailFilter onSetFilter={onSetFilter} filterBy={filterBy} />
             <MailList mails={mails} onSelect={onSelect} />
+            {isShowReviewModal && <MailCompose onSave={onSave} setIsShowReviewModal={setIsShowReviewModal} />}
         </section>
 
         {/* <Link to={`/books/edit/`}><button>Add a book</button></Link>
