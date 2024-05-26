@@ -51,7 +51,7 @@
 .nav-link svg {
     width: 1.2rem;
     min-width: 1.2rem;
-    margin: 0 .5rem;
+    margin: 0 .77rem;
 }
 
 
@@ -59,9 +59,12 @@
 .navbar-nav> :first-child span {} */
 
 
-/* .navbar-nav> :first-child {
+.navbar-nav> :first-child {
     cursor: pointer;
-} */
+    background-color: #c2e7ff;
+    border-radius: 16px;
+
+}
 
 
 .navbar:hover {
@@ -70,7 +73,7 @@
 
 .navbar:hover .navbar-nav> :first-child {
     background-color: #c2e7ff;
-    border-radius: 28%;
+    border-radius: 16px;
 
     width: 50%;
     align-self: start;
@@ -84,5 +87,6 @@
 .filter {
     background-color: var(--bg-nav);
     padding-left: 12.15rem;
+    font-size: .0.875rem;
 
 }

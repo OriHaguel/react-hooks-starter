@@ -2,10 +2,10 @@
 
  .mail-data {
      display: flex;
-     padding: 10px 0px;
+     padding: 5px 0px;
      background-color: #ffffff;
      margin-bottom: 1px;
-
+     width: 95.68vw;
      letter-spacing: normal;
      text-align: start;
      line-height: normal;
@@ -43,4 +43,43 @@
 
  .read {
      background-color: #f2f6fc;
+ }
+
+ .text-container {
+     width: 100%;
+     display: flex;
+     justify-content: start;
+     align-items: center;
+
+ }
+
+ .text-container .span-text {
+     margin-right: 1rem;
+     font-size: 14px;
+     text-align: start;
+     letter-spacing: normal;
+     line-height: 20px;
+     color: #5f6368;
+     font-family: "Google Sans", Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+
+ }
+
+
+ .text-container .sub {
+     color: #202124;
+
+ }
+
+ .text-container .subject {
+     font-weight: 700;
+     color: #202124;
+ }
+
+
+ .text-container .span-date {
+     margin-left: auto;
+     margin-right: 1rem;
+     font-family: sans-serif;
+
+     color: #5f6368;
  }
