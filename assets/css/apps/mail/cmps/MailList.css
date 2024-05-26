@@ -18,10 +18,28 @@
  .input-td {
      display: flex;
      margin-right: 10px;
+     align-self: center;
      transform: scale(1.2);
+
  }
 
+ .star-icon,
+ .star-clicked-icon {
+     padding: 5px;
+     transition: .08s;
+ }
 
+ .star-icon:hover {
+     fill: #484B4B;
+     background-color: #484b4b1e;
+     border-radius: 50%;
+
+ }
+
+ .star-clicked-icon:hover {
+     background-color: #484b4b1e;
+     border-radius: 50%;
+ }
 
  .mail-data:hover {
      transform: scale(1.002);
