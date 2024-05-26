@@ -1,18 +1,23 @@
  /* mail list */
 
+ .mail-main {
+     background-color: #FFFFFF;
+ }
+
  .mail-data {
      display: flex;
-     padding: 5px 0px;
+     padding: 10px 0px;
      background-color: #ffffff;
-     margin-bottom: 1px;
+     /* margin-bottom: 1px; */
      width: 95.68vw;
      letter-spacing: normal;
      text-align: start;
      line-height: normal;
-     transition: .05s;
+     /* transition: .05s; */
      cursor: pointer;
      /* box-shadow: inset rgba(47, 69, 92, 0.192) 3px -2px 1px 0px; */
-
+     box-shadow: var(--webkit-box-shadow);
+     height: 20px;
  }
 
  .input-td {
@@ -42,22 +47,21 @@
  }
 
  .mail-data:hover {
-     transform: scale(1.002);
-     /* scale: 1.002; */
+     transform: scale(1.01);
+
      transform-origin: center;
-     box-shadow: inset rgba(47, 69, 92, 0.192) 0px -5px 10px 0px;
+     /* box-shadow: inset rgba(47, 69, 92, 0.192) 0px -5px 10px 0px; */
+     box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgba(60, 64, 67, .3), 0 1px 3px 1px rgba(60, 64, 67, .15);
+     z-index: 2;
  }
 
  .mail-data-container> :first-child {
-     margin-top: .7px;
+     /* margin-top: .7px; */
      /* border-top-left-radius: 1000%; */
 
  }
 
- .mail-data-container {
-     background-color: rgb(128, 128, 128);
 
- }
 
  .read {
      background-color: #f2f6fc;
@@ -76,7 +80,7 @@
      font-size: 14px;
      text-align: start;
      letter-spacing: normal;
-     line-height: 20px;
+     /* line-height: 20px; */
      color: #5f6368;
      font-family: "Google Sans", Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
 
