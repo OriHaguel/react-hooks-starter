@@ -22,7 +22,7 @@
 
  .input-td {
      display: flex;
-     margin-right: 10px;
+     margin-left: .5rem;
      align-self: center;
      transform: scale(1.2);
 
@@ -54,14 +54,6 @@
      box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgba(60, 64, 67, .3), 0 1px 3px 1px rgba(60, 64, 67, .15);
      z-index: 2;
  }
-
- .mail-data-container> :first-child {
-     /* margin-top: .7px; */
-     /* border-top-left-radius: 1000%; */
-
- }
-
-
 
  .read {
      background-color: #f2f6fc;
