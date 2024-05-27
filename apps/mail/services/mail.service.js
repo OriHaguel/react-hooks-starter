@@ -14,6 +14,7 @@ export const emailService = {
     isRead,
     getFilterFromSearchParams,
     getDefaultMail,
+    isStared,
 }
 
 const KEY = 'mailDB'
@@ -62,6 +63,17 @@ function isRead(mail) {
 
 
 }
+function isStared(mail) {
+    return get(mail.id)
+        .then(mail => {
+            mail.isStared = !mail.isStared
+            return Promise.resolve(mail)
+        }).then((mail) => {
+            save(mail)
+            return Promise.resolve(mail)
+        })
+}
+
 
 function addReview(mailId, reviewToSave) {
     return get(mailId).then(mail => {
@@ -171,6 +183,7 @@ function _createEmail() {
         subject: utilService.makeLorem(3),
         body: utilService.makeLorem(30),
         isRead: false,
+        isStared: false,
         sentAt: utilService.getRandomTimestamp(),
         removedAt: null,
         from: 'momo@momo.com',

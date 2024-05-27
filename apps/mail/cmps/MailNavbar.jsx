@@ -1,10 +1,19 @@
 import { MailCompose } from "./MailCompose.jsx"
-
+const { useState, useEffect } = React
 
 
 const { Link, NavLink } = ReactRouterDOM
 
-export function MailNavbar({ setIsShowReviewModal }) {
+export function MailNavbar({ setIsShowReviewModal, mails }) {
+
+    // const [starCount, setStarCount] = useState()
+
+    function starCounter() {
+        return mails.filter(mail => mail.isStared === true).length
+        // setStarCount(mails.filter(mail => mail.isStared === true).length)
+
+    }
+    // console.log("🚀 ~ MailNavbar ~  starCount():", starCounter())
 
     return (
 
@@ -28,6 +37,7 @@ export function MailNavbar({ setIsShowReviewModal }) {
                     <Link to='/' className="nav-link">
                         <svg className="star-link" xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 -960 960 960" width="28px" fill='#444746'><path d="m354-287 126-76 126 77-33-144 111-96-146-13-58-136-58 135-146 13 111 97-33 143ZM233-120l65-281L80-590l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Zm247-350Z" /></svg>
                         <span className="link-text">hello</span>
+                        <span>{starCounter()}</span>
                     </Link>
 
                 </li>
@@ -53,3 +63,4 @@ export function MailNavbar({ setIsShowReviewModal }) {
 
     )
 }
+
