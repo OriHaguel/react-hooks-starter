@@ -19,7 +19,12 @@
 /* @import './apps/mail/views/MailIndex.css'; */
 
 /* Cmps */
-
+@import'./apps/note/cmps/noteslist.css';
+@import'./apps/note/cmps/editnote.css';
 @import './cmps/UserMsg.css';
 @import './cmps/AppHeader.css';
-@import './apps/note/cmps/NoteList.css';
+
+
+
+@import './apps/note/cmps/newnote.css';
+/* @import './apps/note/cmps/NoteList.css'; */

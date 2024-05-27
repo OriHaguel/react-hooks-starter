@@ -68,6 +68,7 @@ function _setNextPrevNoteId(note) {
 
 
 function remove(noteId) {
+    console.log(query());
     return storageService.remove(KEY, noteId)
 
 }

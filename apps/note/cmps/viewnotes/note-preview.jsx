@@ -1,9 +1,9 @@
-import { NoteText } from '../cmps/dynamic/NoteText.jsx'
+import { NoteText } from '../createnote/NoteText.jsx'
 
 
 
 
-export function NotePreview({ note }) {
+export function NotePreview({ note, onRemove, onEditNote }) {
 
     function DynamicCmp(props) {
 
@@ -20,9 +20,11 @@ export function NotePreview({ note }) {
         }
     }
 
+
     return (
 
-        <DynamicCmp cmpType={note.type} note={note} />
+        <DynamicCmp cmpType={note.type} note={note} onRemove={onRemove} onEditNote={onEditNote} />
 
     )
 }
+//
