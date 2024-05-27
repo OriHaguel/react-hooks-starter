@@ -2,6 +2,7 @@ const { useState, useEffect } = React
 
 export function MailFilter({ filterBy, onSetFilter }) {
     const [filter, setFilter] = useState(filterBy)
+    console.log("🚀 ~ MailFilter ~ filter:", filter)
 
     useEffect(() => {
         onSetFilter(filter)
@@ -28,6 +29,11 @@ export function MailFilter({ filterBy, onSetFilter }) {
             <option value={null}>none</option>
             <option value={true}>read</option>
             <option value={false}>unread</option>
+        </select>
+        <select name="sort" id="sort" onChange={handleOnChange}>
+            <option value={null}>none</option>
+            <option value={'title'}>title</option>
+            <option value={'date'}>date</option>
         </select>
 
 

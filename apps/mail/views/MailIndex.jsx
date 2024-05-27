@@ -37,7 +37,7 @@ export function MailIndex() {
 
     }
 
-    console.log("🚀 ~ MailIndex ~ mails:", mails)
+
     function onSelect(mail) {
         emailService.isRead(mail)
             .then((prevMail) => {

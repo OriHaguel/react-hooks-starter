@@ -38,6 +38,14 @@ function query(filterBy = {}) {
 
                 mails = mails.filter(mail => mail.isRead === false)
             }
+            if (filterBy.sort === 'title') {
+                mails.sort((p1, p2) => p1.subject.localeCompare(p2.subject))
+
+            }
+            if (filterBy.sort === 'date') {
+                mails.sort((p1, p2) => (p2.sentAt - p1.sentAt))
+
+            }
 
             return mails
         })

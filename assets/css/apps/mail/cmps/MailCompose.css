@@ -50,21 +50,24 @@
 
 .review-form input {
     width: 100%;
-    /* Adjust this width as needed */
     box-sizing: border-box;
-    /* Ensure padding and border are included in the width */
     padding: 15px;
-    /* Optional: Add some padding for better appearance */
     height: 3.5rem;
     border: 0;
+    outline: none;
 }
 
+.compose-subject {
+    box-shadow: 0 0 0 1px rgb(230, 230, 230);
+    margin-bottom: 1px;
+}
 
 .review-form textarea {
     height: 100%;
     display: flex;
     resize: none;
     border: 0;
+    outline: none;
 }
 
 

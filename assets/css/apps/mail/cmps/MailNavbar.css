@@ -77,6 +77,7 @@
     background-color: #c2e7ff;
     border-radius: 16px;
     align-self: start;
+    margin-bottom: 1rem;
 }
 
 .navbar-nav> :nth-child(2) {
@@ -110,4 +111,5 @@
     background-color: var(--bg-nav);
     padding-left: 12.15rem;
     font-size: .0.875rem;
+    height: 4.2rem;
 }
