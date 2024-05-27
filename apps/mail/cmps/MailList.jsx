@@ -13,9 +13,6 @@ export function MailList({ mails, onSelect, setMails }) {
 
                     <tr className={`mail-data ${mail.isRead ? 'read' : ''}`} key={mail.id}>
                         <MailPreview mail={mail} onSelect={onSelect} setMails={setMails} />
-                        {/* <Link to={`/books/${book.id}`}><button>Details</button></Link>
-                <Link to={`/books/edit/${book.id}`}><button>Edit</button></Link>
-                <button onClick={() => onRemove(book.id)}>remove book</button> */}
                     </tr>
 
                 )
