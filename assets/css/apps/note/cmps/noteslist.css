@@ -1,0 +1,68 @@
+.notes-container{
+    background-color: #fff; 
+    width: 90vw;
+    column-count: 3; 
+    column-width: 300px; 
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 300px);
+    grid-auto-flow: dense;
+    gap: 20px;
+}
+.note-preview {
+  
+    margin-bottom: 10px;
+    position: relative;
+    display: block;
+    border-radius: 8px;
+    box-shadow:  1px 0px 5px rgb(190, 190, 191, .73);
+    margin: 5px;
+    align-items: center;
+    border-radius: 9px;
+    margin: 12px;
+    padding-right: 20px;
+    padding: 10px;
+    }
+    .note-preview img {
+        width: 100%;
+    }
+    
+    .note-preview p {
+        margin-bottom: 50px;
+        overflow-wrap: break-word;
+    }
+    
+    .btn-update{
+        background-image: url(../../../../../assets/img/icons-note/icon/edit.png);
+        width: 25px;
+        height: 25px;
+        position: absolute;
+        right: 35px;
+        bottom:  15px;
+        background-size: cover;
+        border: none;
+    }
+    .btn-remove{
+        background-image: url(../../../../../assets/img/icons-note/icon/trash.png);
+        width: 25px;
+        height: 25px;
+        position: absolute;
+        right:  5px;
+        bottom:  15px;
+        background-size: cover;
+        border: none;
+        background-color: transparent;
+    }
+
+    .btn-color{
+        width: 25px;
+        height: 25px;
+       background-color: pink;
+        border-radius: 50%;
+        border: none;
+        position: absolute;
+        right: 70px;
+        bottom:  15px;
+    }  
+    .clickable {
+        cursor: pointer;
+    }
