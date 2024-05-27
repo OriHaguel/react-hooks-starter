@@ -1,0 +1,92 @@
+:root {
+    --bg-nav: #f6f8fc;
+}
+
+.mail-main {
+    margin-left: 3.9rem;
+    font-size: 14px;
+    font-family: sans-serif;
+
+}
+
+.navbar {
+    width: 4rem;
+    height: 100vh;
+    position: fixed;
+    background-color: var(--bg-nav);
+    transition: width 200ms ease;
+    z-index: 1;
+
+}
+
+.navbar-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    height: 4rem;
+    text-decoration: none;
+}
+
+
+
+.nav-item {
+    width: 100%;
+}
+
+
+.link-text {
+    margin-left: .5rem;
+    display: none;
+    /* align-self: end; */
+}
+
+.nav-link svg {
+    width: 1.2rem;
+    min-width: 1.2rem;
+    margin: 0 .77rem;
+}
+
+
+/* .navbar-nav> :first-child svg,
+.navbar-nav> :first-child span {} */
+
+
+.navbar-nav> :first-child {
+    cursor: pointer;
+    background-color: #c2e7ff;
+    border-radius: 16px;
+
+}
+
+
+.navbar:hover {
+    width: 16rem;
+}
+
+.navbar:hover .navbar-nav> :first-child {
+    background-color: #c2e7ff;
+    border-radius: 16px;
+
+    width: 50%;
+    align-self: start;
+}
+
+
+.navbar:hover .link-text {
+    display: block;
+}
+
+.filter {
+    background-color: var(--bg-nav);
+    padding-left: 12.15rem;
+    font-size: .0.875rem;
+
+}

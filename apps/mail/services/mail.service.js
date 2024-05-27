@@ -12,7 +12,8 @@ export const emailService = {
     addReview,
     removeReview,
     isRead,
-
+    getFilterFromSearchParams,
+    getDefaultMail,
 }
 
 const KEY = 'mailDB'
@@ -27,7 +28,7 @@ function query(filterBy = {}) {
                 const regExp = new RegExp(filterBy.subject, 'i')
                 mails = mails.filter(mail => regExp.test(mail.subject))
             }
-            console.log("🚀 ~ query ~ filterBy.isRead:", filterBy.isRead)
+
             if (filterBy.isRead === 'true') {
 
                 mails = mails.filter(mail => mail.isRead === true)
@@ -52,7 +53,7 @@ function get(mailId) {
 function isRead(mail) {
     return get(mail.id)
         .then(mail => {
-            mail.isRead = !mail.isRead
+            mail.isRead = true
             return Promise.resolve(mail)
         }).then((mail) => {
             save(mail)
@@ -119,7 +120,30 @@ function getDefaultFilter() {
     return { subject: '', isRead: null }
 }
 
+function getDefaultMail() {
+    return {
+        subject: '',
+        body: '',
+        isRead: false,
+        sentAt: Date.now(),
+        removedAt: null,
+        from: 'momo@momo.com',
+        to: 'user@appsus.com'
+    }
+}
 
+// let what = Date.now()
+// console.log(what)
+
+
+
+function getFilterFromSearchParams(searchParams) {
+    return {
+        subject: searchParams.get('subject') || '',
+        isRead: searchParams.get('isRead') || '',
+
+    }
+}
 // function _savemailsToStorage() {
 //     storageService.save(KEY, gmails)
 // }
@@ -147,7 +171,7 @@ function _createEmail() {
         subject: utilService.makeLorem(3),
         body: utilService.makeLorem(30),
         isRead: false,
-        sentAt: 1551133930594,
+        sentAt: utilService.getRandomTimestamp(),
         removedAt: null,
         from: 'momo@momo.com',
         to: 'user@appsus.com'

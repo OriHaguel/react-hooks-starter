@@ -8,6 +8,7 @@ import { MailIndex } from "./apps/mail/views/MailIndex.jsx"
 import { NoteIndex } from "./apps/note/views/NoteIndex.jsx"
 import { emailService } from "./apps/mail/services/mail.service.js"
 import { MailDetails } from "./apps/mail/views/MailDetails.jsx"
+import { UserMsg } from "./cmps/UserMsg.jsx"
 
 
 
@@ -26,5 +27,6 @@ export function App() {
                 <Route path="/note/:noteId" element={<NoteIndex />} />
             </Routes>
         </section>
+        <UserMsg />
     </Router>
 }

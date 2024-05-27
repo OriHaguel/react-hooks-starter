@@ -18,13 +18,13 @@ export function MailFilter({ filterBy, onSetFilter }) {
 
     }
 
-    return <form >
+    return <form className="filter">
         <label htmlFor="subject">title</label>
-        <input type="text" id="subject" name="subject" placeholder="title" onChange={handleOnChange} />
+        <input value={filter.subject} type="text" id="subject" name="subject" placeholder="title" onChange={handleOnChange} />
 
         {/* <label htmlFor="isRead">price</label>
         <input type="text" id="isRead" name="isRead" placeholder="isRead" onChange={handleOnChange} /> */}
-        <select name="isRead" id="isRead" onChange={handleOnChange}>
+        <select value={filter.isRead} name="isRead" id="isRead" onChange={handleOnChange}>
             <option value={null}>none</option>
             <option value={true}>read</option>
             <option value={false}>unread</option>
