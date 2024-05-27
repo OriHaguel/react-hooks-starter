@@ -1,0 +1,122 @@
+.add-note-container {
+    background-color: lightgoldenrodyellow;
+    width: 500px;
+    margin-left: 30%;
+    border-radius: 10px;
+    box-shadow: 1px 0px 8px 2px rgb(190, 190, 191, .73);
+    padding: 10px;
+}
+
+.add-note-controller {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.add-note-controller form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-add-note {
+    border: 1px solid #ccc;
+    padding: 1px 6px;
+    margin: 5px;
+    height: 40px;
+    padding: 5px;
+    padding-left: 15px;
+    border-radius: 35px;
+    border: none;
+    margin: 5px;
+    width: 25vw;
+    
+}
+
+
+
+.textarea-add-note {
+    background-color: white;
+    padding: 1px 6px;
+    width: 400px;
+    min-height: 100px;
+    line-height: 20px;
+    border: none;
+    border-radius: 8px;
+}
+
+
+.nav-add-note>* {
+    margin-left: 20px;
+    width: 50px;
+    height: 50px;
+    border: none;
+    cursor: pointer;
+}
+
+.nav-add-note .btn-txt {
+    background-image: url(../../../../../assets/img/icons-note/icon/txt.png);
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+}
+
+.nav-add-note .btn-txt.btn-active {
+    background-image: url(../../../../../assets/img/icons-note/icon/txt2.png);
+}
+
+.nav-add-note .btn-img {
+    background-image: url(../../../../../assets/img/icons-note/icon/img.png); 
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+}
+
+.nav-add-note .btn-img.btn-active {
+    background-image: url(../../../../../assets/img/icons-note/icon/img2.png);
+}
+
+.nav-add-note .btn-video {
+    background-image: url(../../../../../assets/img/icons-note/icon/video.png); 
+    background-size: cover;
+    width: 60 px;
+    height: 50px;
+}
+
+.nav-add-note .btn-video.btn-active {
+    background-image: url(../../../../../assets/img/icons-note/icon/video2.png);
+}
+
+.nav-add-note .btn-list {
+    background-image: url(../../../../../assets/img/icons-note/icon/list.png);
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+}
+
+.nav-add-note .btn-list.btn-active {
+    background-image: url(../../../../../assets/img/icons-note/icon/list2.png);
+}
+
+
+.nav-add-note button {
+    background-color: lightgoldenrodyellow;
+}
+
+
+
+.note-save {
+    width: 150px;
+    cursor: pointer;
+    width: 190px;
+    background-color: lightgoldenrodyellow;
+    border-radius: 5px;
+    border: none;
+    margin: 10px;
+   
+    font-size: 18px;
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

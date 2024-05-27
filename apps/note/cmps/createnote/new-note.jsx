@@ -1,6 +1,6 @@
 const { useState, useEffect } = React
 import { NewNoteEdit } from "./new-note-edit.jsx"
-export function NewNote() {
+export function NewNote({ toggle }) {
 
     const [isOpen, setIsOpen] = useState(false)
     function onOpen() {
@@ -9,23 +9,26 @@ export function NewNote() {
     function onClose() {
         setIsOpen(false)
     }
-    return <section className="new-note-section" onClick={onOpen}>
+    function onToggle() {
+        toggle()
+    }
+    return <section className="new-note-section" onClick={onToggle}>
 
         <div className="new-note-box">
             <div className="edit-title-note">
                 <p className="new-note-text">
-                    פתק חדש…
+                    new note...
                 </p>
                 <div className="new-note-simbals">
-                    <i className="fa-solid fa-1x fa-trash"></i>
-                    <i className="fa-solid fa-1x fa-trash"></i>
+
                 </div>
             </div>
 
-            {isOpen && <NewNoteEdit onClose={onClose} />}
         </div>
 
 
 
     </section>
 }
+// <i className="fa-solid fa-1x fa-trash"></i>
+//<i className="fa-solid fa-1x fa-trash"></i>

@@ -1,9 +1,10 @@
  /* note list */
 
   /* note list */
+     /* background-color: #fff;*/
   .list-bar{
     right: 0;
-    background-color: #fff;
+
 -webkit-box-sizing: border-box;
 box-sizing: border-box;
 display: -webkit-box;
@@ -55,29 +56,7 @@ z-index: 985;
  .list-child > span{
     margin-right: 20px;
  }
- .new-note-section{
-    
- }
- .new-note-box{
-    width: 600px;
-    margin-inline: 30vw;
-    display: flex;
-    flex-direction: column;
 
-box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302),0 2px 6px 2px rgba(60,64,67,0.149);
- }
- .new-note-simbals{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
- }
- .edit-title-note{
-    margin-inline: 30vw;
-    display: flex;
-    flex-direction: column;
-    flex-direction: row-reverse;
-justify-content: space-between;
- }
 
  
  /*
