@@ -7,20 +7,22 @@ import { utilService } from "../../../services/util.service.js"
 
 
 
-export function MailPreview({ mail, onSelect }) {
-    const [starClicked, setStarClicked] = useState(false);
+export function MailPreview({ mail, onSelect, setMails }) {
+    const [starClicked, setStarClicked] = useState(mail.isStared);
+
+
 
     function onStar() {
-        setStarClicked(prevStar => !prevStar)
+        emailService.isStared(mail)
+            .then((prevMail) => {
+                setMails(prevMails => prevMails.map(m => m.id === prevMail.id ? { ...m, isStared: prevMail.isStared } : m))
+            })
+            .then(() => setStarClicked(prevMail => !prevMail))
+
+
+
     }
-    // function onSelect() {
 
-    //     navigate(`/mail/${mail.id}`)
-    //     // setMails(prevMails => prevMails.map(m => m.id === mail.id ? { ...m, isRead: true } : m));
-
-
-    //     console.log("🚀 ~ MailPreview ~ mail:", mail)
-    // }
     const dateDetails = utilService.getDateDetails(mail.sentAt)
     return <React.Fragment>
 

@@ -36,7 +36,7 @@ export function MailDetails() {
     const { subject, body, isRead, sentAt, removedAt, from, to } = mail
     // utilService.getDateDetails(sentAt).monthName
     const dateDetails = utilService.getDateDetails(sentAt)
-    console.log("🚀 ~ MailDetails ~  utilService.getDateDetails(sentAt).monthName:", dateDetails.year)
+
 
     return <div>
         <button onClick={onGoBack}>Go back</button>
