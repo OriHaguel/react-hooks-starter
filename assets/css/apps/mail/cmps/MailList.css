@@ -72,16 +72,14 @@
      font-size: 14px;
      text-align: start;
      letter-spacing: normal;
-     /* line-height: 20px; */
      color: #5f6368;
      font-family: "Google Sans", Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
-
+     white-space: nowrap;
  }
 
 
  .text-container .sub {
      color: #202124;
-
  }
 
  .text-container .subject {
@@ -89,11 +87,15 @@
      color: #202124;
  }
 
+ .text-container .from {
+     margin-right: 3rem;
+
+ }
 
  .text-container .span-date {
      margin-left: auto;
      margin-right: 1rem;
      font-family: sans-serif;
+     white-space: nowrap;
 
-     color: #5f6368;
  }

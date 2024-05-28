@@ -35,6 +35,7 @@ export function MailPreview({ mail, onSelect, setMails }) {
 
         </td>
         <td className="text-container" onClick={() => onSelect(mail)}>
+            <span className={`span-text sub from ${!mail.isRead && 'subject'}`}>{mail.from}</span>
             <span className={`span-text sub ${!mail.isRead && 'subject'}`}> {mail.subject}</span>
             {/* <span>{mail.body}</span> */}
             <span className="span-text"><LongTxt txt={mail.body} /></span>
