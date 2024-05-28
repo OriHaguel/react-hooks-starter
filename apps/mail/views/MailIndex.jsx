@@ -42,18 +42,8 @@ export function MailIndex() {
         emailService.isRead(mail)
             .then((prevMail) => {
                 setMails(prevMails => prevMails.map(m => m.id === prevMail.id ? { ...m, isRead: prevMail.isRead } : m))
-                // setMails(prevMails => ({ ...prevMails, mailsMerged }))
-                // setMails(prevMails => {
-                //     console.log(prevMails)
-                //     return prevMails
-                // })
 
             }).then(() => navigate(`/mail/${mail.id}`))
-
-        // setMails(prevMails => prevMails.map(m =>  m.id === mail.id ? { ...m, isRead: !mail.isRead } : m))
-
-
-
     }
 
     function onSave(mailToAdd) {
@@ -84,10 +74,7 @@ export function MailIndex() {
             {isShowReviewModal && <MailCompose onSave={onSave} setIsShowReviewModal={setIsShowReviewModal} />}
         </section>
 
-        {/* <Link to={`/books/edit/`}><button>Add a book</button></Link>
-        <Link to={`/books/search/`}><button>Search a book</button></Link>
-        <BookFilter filterBy={filterBy} onSetFilter={onSetFilter} />
-        <BookList books={books} onRemove={onRemove} /> */}
+
 
     </section>
 }
