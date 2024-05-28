@@ -15,6 +15,7 @@ export const emailService = {
     getFilterFromSearchParams,
     getDefaultMail,
     isStared,
+    isDeleted,
 }
 
 const KEY = 'mailDB'
@@ -75,6 +76,16 @@ function isStared(mail) {
     return get(mail.id)
         .then(mail => {
             mail.isStared = !mail.isStared
+            return Promise.resolve(mail)
+        }).then((mail) => {
+            save(mail)
+            return Promise.resolve(mail)
+        })
+}
+function isDeleted(mail) {
+    return get(mail.id)
+        .then(mail => {
+            mail.isDeleted = true
             return Promise.resolve(mail)
         }).then((mail) => {
             save(mail)
@@ -148,6 +159,7 @@ function getDefaultMail() {
         sentAt: Date.now(),
         isSent: true,
         isStared: false,
+        isDeleted: false,
         removedAt: null,
         from: 'momo@momo.com',
         to: 'user@appsus.com'
@@ -194,6 +206,7 @@ function _createEmail() {
         body: utilService.makeLorem(30),
         isRead: false,
         isStared: false,
+        isDeleted: false,
         sentAt: utilService.getRandomTimestamp(),
         removedAt: null,
         from: 'momo@momo.com',

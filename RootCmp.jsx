@@ -11,6 +11,7 @@ import { MailDetails } from "./apps/mail/views/MailDetails.jsx"
 import { UserMsg } from "./cmps/UserMsg.jsx"
 import { SentIndex } from "./apps/mail/views/SentIndex.jsx"
 import { StarIndex } from "./apps/mail/views/StarIndex.jsx"
+import { DeleteIndex } from "./apps/mail/views/DeleteIndex.jsx"
 
 
 
@@ -28,6 +29,7 @@ export function App() {
                 <Route path="/note" element={<NoteIndex />} />
                 <Route path="/mail/sent" element={<SentIndex />} />
                 <Route path="/mail/stars" element={<StarIndex />} />
+                <Route path="/mail/deleted" element={<DeleteIndex />} />
             </Routes>
         </section>
         <UserMsg />
