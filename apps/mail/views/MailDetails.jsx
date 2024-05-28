@@ -21,11 +21,23 @@ export function MailDetails() {
     }, [params.mailId])
 
 
-    function onRemoveMail(mailId) {
-        emailService.remove(mailId)
-            .then(() => onGoBack())
-            .then(() => showSuccessMsg('The mail is deleted!'))
+    function onRemoveMail(mail) {
+        if (mail.isDeleted) {
+            emailService.remove(mail.id)
+                .then(() => navigate('/mail/deleted'))
+                .then(() => showSuccessMsg('The mail is deleted!'))
+        } else if (!mail.isDeleted) {
+            emailService.isDeleted(mail)
+                .then(() => onGoBack())
+                .then(() => showSuccessMsg('The mail is removed to the trash!'))
+
+        }
     }
+    // function onRemoveMail(mailId) {
+    //     emailService.remove(mailId)
+    //         .then(() => onGoBack())
+    //         .then(() => showSuccessMsg('The mail is deleted!'))
+    // }
 
     function onGoBack() {
         navigate('/mail')
@@ -47,7 +59,7 @@ export function MailDetails() {
         {removedAt && <h3>removedAt: {removedAt}</h3>}
         <h3>{from}</h3>
         <h3>{to}</h3>
-        <button onClick={() => onRemoveMail(params.mailId)}>delete mail</button>
+        <button onClick={() => onRemoveMail(mail)}>delete mail</button>
     </div>
 }
 
