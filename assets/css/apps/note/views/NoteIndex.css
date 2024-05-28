@@ -1,1 +1,15 @@
  /* note index */
+ .input-search-note {
+    height: 40px;
+    padding: 5px;
+    padding-left:15px ;
+    border-radius: 35px;
+ 
+    border: none;
+    margin: 5px;
+   
+    width: 250px;
+    color: white;
+ 
+    
+}

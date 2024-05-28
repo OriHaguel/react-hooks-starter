@@ -7,7 +7,7 @@ export function NewNoteTxt(props) {
                 <nav className="nav-add-note">
                     <button className="btn-txt btn-active"  ></button>
                     <button className="btn-img" onClick={() => props.toggleType("img")}></button>
-                    <button className="btn-video"  ></button>
+                    <button className="btn-video" onClick={() => props.toggleType("video")} ></button>
                     <button className="btn-list"  ></button>
                 </nav>
                 <form autofocus onSubmit={props.onSave}>

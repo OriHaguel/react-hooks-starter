@@ -6,7 +6,8 @@ const { useParams, useNavigate } = ReactRouter
 import { NewNoteEdit } from "../cmps/createnote/new-note-edit.jsx"
 import { NotesList } from "../cmps/viewnotes/noteslist.jsx"
 import { NewNote } from "../cmps/createnote/new-note.jsx"
-import { EditNote } from "../cmps/viewnotes/edit-note.jsx"
+import { EditNote } from "../cmps/updatenote/edit-note.jsx"
+import { NotesFilter } from "../cmps/notes-filter.jsx"
 import { NoteList } from "../cmps/NoteList.jsx"
 
 
@@ -18,17 +19,19 @@ export function NoteIndex() {
     const navigate = useNavigate()
     const [notes, setNotes] = useState([])
     const [isLoading, setIsLoading] = useState(false)
-
     const [searchParams, setSearchParams] = useSearchParams()
+    const [filterBy, setFilterBy] = useState(noteService.getFilterFromSearchParams(searchParams))
+
 
     useEffect(() => {
 
-        noteService.query()
+        noteService.query(filterBy)
             .then(notes => {
                 setNotes(notes)
                 console.log(notes);
             })
-    }, [])
+    }, [filterBy])
+
 
     function removeNote(noteId) {
         console.log(noteId);
@@ -47,14 +50,16 @@ export function NoteIndex() {
             .finally(() => setIsLoading(false))
     }
 
-    function onSetFilterBy(newFilter) {
-        setFilterBy({ ...newFilter })
+    function onSetFilterBy(filter) {
+        console.log(filter);
+        setFilterBy(prevFilter => ({ ...prevFilter, ...filter }))
     }
     const [isShowReviewModal, setIsShowReviewModal] = useState(null)
-    function onToggleReviewModal(ev = false) {
+    function onToggleReviewModal(ev = false, type = false) {
         if (ev) ev.stopPropagation()
+
         console.log(ev);
-        navigate('/note')
+
         setIsShowReviewModal((prevIsReviewModal) => !prevIsReviewModal)
     }
     const [isShowNewNoteModal, setIsShowNewNoteModal] = useState(null)
@@ -90,17 +95,27 @@ export function NoteIndex() {
                 navigate("/note")
             })
     }
+    function togglePinned(ev, note) {
+        note.isPinned = !note.isPinned
+        onSave(ev, note)
+
+    }
     const isNotes = notes.length > 0
     return <div>
-
+        <NotesFilter onSetFilter={onSetFilterBy} filterBy={filterBy} />
         {isShowReviewModal && (
             <EditNote saveNote={onSave} onRemove={removeNote} toggleNote={onToggleReviewModal} />)}
 
         {!isShowNewNoteModal && <NewNote toggle={onToggleNewNoteModal} />}
         {isShowNewNoteModal && <NewNoteEdit onSaveRender={onSave} onCloce={onToggleNewNoteModal} />}
-        {isNotes ? <NotesList notes={notes} onRemove={removeNote} onEditNote={onToggleReviewModal} />
+        {<NotesList notes={notes.filter((note) => note.isPinned === true)} onRemove={removeNote} onEditNote={onToggleReviewModal} togglePinned={togglePinned} />
+
+        }
+        <div>No pined to show...</div>
+        {isNotes ? <NotesList notes={notes.filter((note) => note.isPinned === false)} onRemove={removeNote} onEditNote={onToggleReviewModal} togglePinned={togglePinned} />
             : <div>No notes to show...</div>
         }
+
 
     </div>
 }

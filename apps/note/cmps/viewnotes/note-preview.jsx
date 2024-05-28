@@ -1,29 +1,23 @@
-import { NoteText } from '../createnote/NoteText.jsx'
+import { NoteText } from './NoteText.jsx'
+import { NoteImg } from './NoteImg.jsx'
+import { NoteVideo } from './NoteVideo.jsx'
 
 
 
 
-export function NotePreview({ note, onRemove, onEditNote }) {
+export function NotePreview({ note, onRemove, onEditNote, togglePinned }) {
 
     function DynamicCmp(props) {
 
-        switch (props.cmpType) {
-            case 'text':
-                return <NoteText {...props} />
-            case 'img':
-                return <NoteImg {...props} />
-            case 'video':
-                return <NoteVideo {...props} />
-            case 'todos':
-                return <NoteTodos {...props} />
-
-        }
+        if (props.note.imgUrl) return <NoteImg {...props} />
+        else if (props.note.vidUrl) return <NoteVideo {...props} />
+        else if (props.note.text) return <NoteText {...props} />
     }
 
 
     return (
 
-        <DynamicCmp cmpType={note.type} note={note} onRemove={onRemove} onEditNote={onEditNote} />
+        <DynamicCmp togglePinned={togglePinned} cmpType={note.type} note={note} onRemove={onRemove} onEditNote={onEditNote} />
 
     )
 }

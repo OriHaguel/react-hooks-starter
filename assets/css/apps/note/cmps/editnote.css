@@ -1,3 +1,6 @@
+li{
+    list-style: none;
+}
 .add-note-container {
     background-color: lightgoldenrodyellow;
     width: 500px;

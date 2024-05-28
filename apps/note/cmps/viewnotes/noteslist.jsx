@@ -4,7 +4,7 @@ const { useState, useEffect } = React
 import { NotePreview } from './note-preview.jsx'
 import { MenuEditor } from './noteeditmenue.jsx';
 
-export function NotesList({ notes, onRemove, onEditNote }) {
+export function NotesList({ notes, onRemove, onEditNote, togglePinned }) {
     const [isShowMenu, setisShowMenu] = useState(false)
     function onToggleShowMenu() {
 
@@ -18,9 +18,9 @@ export function NotesList({ notes, onRemove, onEditNote }) {
             {notes.map(note =>
 
                 < Link key={note.id} to={`/note/${note.id}`}>
-                    <li className="note-preview" key={note.id} >
+                    <li key={note.id} >
 
-                        <NotePreview note={note} onRemove={onRemove} onEditNote={onEditNote} />
+                        <NotePreview note={note} onRemove={onRemove} onEditNote={onEditNote} togglePinned={togglePinned} />
 
 
 

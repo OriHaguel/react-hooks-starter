@@ -9,7 +9,8 @@ export const noteService = {
     save,
     getDefaultFilter,
     remove,
-    getEmptyNote
+    getEmptyNote,
+    getFilterFromSearchParams
 
 
 }
@@ -17,14 +18,16 @@ export const noteService = {
 const KEY = 'noteDB'
 //_createNotes
 
-
+//regExp.test(note.vendor)
 
 function query(filterBy = {}) {
+    console.log(filterBy);
     return storageService.query(KEY)
         .then(notes => {
-            if (filterBy.txt) {
+            if (filterBy.text) {
+
                 const regExp = new RegExp(filterBy.txt, 'i')
-                notes = notes.filter(note => regExp.test(note.vendor))
+                notes = notes.filter(note => note.text === filterBy.text)
             }
 
             if (filterBy.minSpeed) {
@@ -84,7 +87,14 @@ function save(note) {
 
 
 function getDefaultFilter() {
-    return { title: '', price: 0 }
+    return { text: '', price: 0 }
+}
+function getFilterFromSearchParams(searchParams) {
+    return {
+        text: searchParams.get('text') || '',
+        isRead: searchParams.get('isRead') || '',
+
+    }
 }
 
 

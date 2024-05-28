@@ -10,8 +10,8 @@ export function NewNoteImg(props) {
                     <button className="btn-list"  ></button>
                 </nav>
                 <form onSubmit={props.onSave}>
-                    <textarea className="textarea-add-note" id="text" name="text" value={props.note.text ? props.note.text : ''} placeholder="Enter text..." onChange={props.handleChange} />
-                    <button className="keep-save" >Save note</button>
+                    <textarea autoFocus className="textarea-add-note" id="text" name="imgUrl" value={props.note.imgUrl ? props.note.imgUrl : ''} placeholder="Enter text..." onChange={props.handleChange} />
+                    <button className="note-save" >Save note</button>
                 </form>
 
             </div>

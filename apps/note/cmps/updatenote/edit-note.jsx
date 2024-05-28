@@ -1,9 +1,12 @@
+import { EditNoteImg } from "edit-Note-img.jsx"
+import { EditNoteText } from "edit-Note-text.jsx"
 
+import { EditNoteVideo } from 'edit-Note-video.jsx'
 import { noteService } from "../../../../services/note-service.js"
 const { useState, useRef, useEffect } = React
 const { useParams, useNavigate } = ReactRouter
 
-export function EditNote({ saveNote, toggleNote, onRemove }) {
+export function EditNote({ saveNote, toggleNote, cmp, onRemove }) {
 
 
     const params = useParams()
@@ -15,19 +18,16 @@ export function EditNote({ saveNote, toggleNote, onRemove }) {
         noteService.get(params.noteId)
             .then(note => setNote(note))
     }, [params])
-    const inputRef = useRef()
 
-    useEffect(() => {
-        inputRef.current.focus()
-    }, [])
     function handleChange({ target }) {
         const { id, type, name: prop } = target
 
         let { value } = target
-        console.log(type, prop, id, note.text, value);
-
+        console.log(type, prop, id, note.imgUrl, value);
+        value = value
 
         setNote(prevNote => ({ ...prevNote, [prop]: value }))
+        console.log(note, note.imgUrl);
     }
     function onAddNote(ev) {
         ev.preventDefault()
@@ -41,44 +41,28 @@ export function EditNote({ saveNote, toggleNote, onRemove }) {
 
 
     }
+
     //onSubmit={onAddNote}
+    function DynamicCmp(props) {
+        console.log(props);
+        if (props.note.imgUrl) return <EditNoteImg {...props} />
+        else if (props.note.vidUrl) return <EditNoteVideo {...props} />
+        else return <EditNoteText {...props} />
 
 
 
-    return <section className='review-add'>
 
-        <form onSubmit={(ev) => onAddNote(ev)} className='review-form'>
-            <div className='review-modal'>
-                <h1>edit note</h1>
-                <button className='btn-toggle-modal'
-                    onClick={toggleNote}>X
-                </button>
-                <label className='bold-txt' htmlFor='fullname'>Full name:</label>
-                <input
-                    autoFocus
-                    ref={inputRef}
-                    placeholder='Enter full name'
-                    name='text'
-                    type='text'
-                    id="text"
-                    value={note.text ? note.text : ''}
-                    onChange={handleChange}
-                    autoComplete='off'
-                />
-
-                <label htmlFor="title">title</label>
-                <input
-                    onChange={handleChange} value={note.title ? note.title : ''}
-                    id="title" name="title"
-                    type="text" placeholder="title" />
+    }
 
 
 
-                <button>Save</button>
-            </div>
-        </form>
+    return (
 
-    </section>
+        <DynamicCmp note={note} onSave={onAddNote} handleChange={handleChange} />
+
+    )
+
+
 }
 
 
