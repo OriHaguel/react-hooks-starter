@@ -146,6 +146,7 @@ function getDefaultMail() {
         body: '',
         isRead: false,
         sentAt: Date.now(),
+        isSent: true,
         removedAt: null,
         from: 'momo@momo.com',
         to: 'user@appsus.com'
