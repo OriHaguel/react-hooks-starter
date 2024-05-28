@@ -32,7 +32,6 @@
     align-items: center;
     height: 1rem;
     text-decoration: none;
-
 }
 
 
@@ -65,15 +64,10 @@
     color: #A5A8AC;
 }
 
-
-
-
-
 .read-count,
 .inbox {
     color: #001D35;
     font-weight: bold;
-
 
 }
 
@@ -85,7 +79,6 @@
     border-radius: 16px;
     align-self: start;
     margin-bottom: 1rem;
-
 }
 
 .navbar-nav> :nth-child(2) {
@@ -93,24 +86,11 @@
     background-color: #D3E3FD;
     border-radius: 50px;
     align-self: start;
-
-
-
-}
-
-
-.navbar:hover .navbar-nav> :nth-child(2) {
-
-
-    width: 95%;
-
-
 }
 
 
 .navbar:hover .navbar-nav {
     width: 95%;
-
 }
 
 .navbar:hover {
