@@ -31,8 +31,10 @@ export function DraftIndex() {
     function onSave(mailToAdd) {
         emailService.save(mailToAdd)
             .then((savedMail) => emailService.isNotDrafted(savedMail))
-            .then((mail) => setMails((prevMails) => ([...prevMails, mail])))
+            .then((prevMail) => setMails(prevMails => prevMails.map(m => m.id === prevMail.id ? { ...m, isDrafted: prevMail.isDrafted } : m)))
+
         setIsShowReviewModal(false)
+
     }
 
 
@@ -46,9 +48,14 @@ export function DraftIndex() {
     function onAutoSave(mailToAdd) {
         return emailService.save(mailToAdd)
             .then((savedMail) => emailService.isDrafted(savedMail))
+            .then((prevMail) => {
+                setMails(prevMails => prevMails.map(m => m.id === prevMail.id ? { ...m, isDrafted: true } : m))
+                return Promise.resolve(prevMail)
+            })
 
 
     }
+
     if (!mails) return <h1>loading...</h1>
     return <section >
         <MailNavbar setIsShowReviewModal={setIsShowReviewModal} mails={mails} />
