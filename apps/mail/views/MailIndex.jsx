@@ -14,10 +14,11 @@ const { useState, useEffect } = React
 
 export function MailIndex() {
     const [mails, setMails] = useState()
+
     const navigate = useNavigate()
     const [searchParams, setSearchParams] = useSearchParams()
     const [filterBy, setFilterBy] = useState(emailService.getFilterFromSearchParams(searchParams))
-    const [isShowReviewModal, setIsShowReviewModal] = useState(true)
+    const [isShowReviewModal, setIsShowReviewModal] = useState(false)
 
 
     useEffect(() => {
@@ -40,20 +41,9 @@ export function MailIndex() {
     function onSelect(mail) {
         emailService.isRead(mail)
             .then((prevMail) => {
-                // const mailsMerged = [prevMail, ...mails]
                 setMails(prevMails => prevMails.map(m => m.id === prevMail.id ? { ...m, isRead: prevMail.isRead } : m))
-                // setMails(prevMails => ({ ...prevMails, mailsMerged }))
-                // setMails(prevMails => {
-                //     console.log(prevMails)
-                //     return prevMails
-                // })
 
             }).then(() => navigate(`/mail/${mail.id}`))
-
-        // setMails(prevMails => prevMails.map(m =>  m.id === mail.id ? { ...m, isRead: !mail.isRead } : m))
-
-
-
     }
 
     function onSave(mailToAdd) {
@@ -63,20 +53,28 @@ export function MailIndex() {
     }
 
 
+
+
+
+    function onStar(mail) {
+        emailService.isStared(mail)
+        setStarClicked(prevMail => !prevMail)
+    }
+
+
+
+
     if (!mails) return <h1>loading...</h1>
     return <section >
-        <MailNavbar setIsShowReviewModal={setIsShowReviewModal} />
+        <MailNavbar setIsShowReviewModal={setIsShowReviewModal} mails={mails} />
         <section className="mail-main">
 
             <MailFilter onSetFilter={onSetFilter} filterBy={filterBy} />
-            <MailList mails={mails} onSelect={onSelect} />
+            <MailList mails={mails} onSelect={onSelect} setMails={setMails} />
             {isShowReviewModal && <MailCompose onSave={onSave} setIsShowReviewModal={setIsShowReviewModal} />}
         </section>
 
-        {/* <Link to={`/books/edit/`}><button>Add a book</button></Link>
-        <Link to={`/books/search/`}><button>Search a book</button></Link>
-        <BookFilter filterBy={filterBy} onSetFilter={onSetFilter} />
-        <BookList books={books} onRemove={onRemove} /> */}
+
 
     </section>
 }

@@ -14,6 +14,8 @@ export const emailService = {
     isRead,
     getFilterFromSearchParams,
     getDefaultMail,
+    isStared,
+    isDeleted,
 }
 
 const KEY = 'mailDB'
@@ -36,6 +38,14 @@ function query(filterBy = {}) {
             if (filterBy.isRead === 'false') {
 
                 mails = mails.filter(mail => mail.isRead === false)
+            }
+            if (filterBy.sort === 'title') {
+                mails.sort((p1, p2) => p1.subject.localeCompare(p2.subject))
+
+            }
+            if (filterBy.sort === 'date') {
+                mails.sort((p1, p2) => (p2.sentAt - p1.sentAt))
+
             }
 
             return mails
@@ -62,6 +72,27 @@ function isRead(mail) {
 
 
 }
+function isStared(mail) {
+    return get(mail.id)
+        .then(mail => {
+            mail.isStared = !mail.isStared
+            return Promise.resolve(mail)
+        }).then((mail) => {
+            save(mail)
+            return Promise.resolve(mail)
+        })
+}
+function isDeleted(mail) {
+    return get(mail.id)
+        .then(mail => {
+            mail.isDeleted = true
+            return Promise.resolve(mail)
+        }).then((mail) => {
+            save(mail)
+            return Promise.resolve(mail)
+        })
+}
+
 
 function addReview(mailId, reviewToSave) {
     return get(mailId).then(mail => {
@@ -126,6 +157,9 @@ function getDefaultMail() {
         body: '',
         isRead: false,
         sentAt: Date.now(),
+        isSent: true,
+        isStared: false,
+        isDeleted: false,
         removedAt: null,
         from: 'momo@momo.com',
         to: 'user@appsus.com'
@@ -171,6 +205,8 @@ function _createEmail() {
         subject: utilService.makeLorem(3),
         body: utilService.makeLorem(30),
         isRead: false,
+        isStared: false,
+        isDeleted: false,
         sentAt: utilService.getRandomTimestamp(),
         removedAt: null,
         from: 'momo@momo.com',

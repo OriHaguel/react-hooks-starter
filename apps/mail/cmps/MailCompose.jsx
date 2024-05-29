@@ -44,7 +44,7 @@ export function MailCompose({ onSave, setIsShowReviewModal }) {
 
                     <input onChange={handleChange} type="text" id="to" name="to" placeholder="To" />
 
-                    <input onChange={handleChange} type="text" id="subject" name="subject" placeholder="Subject" />
+                    <input onChange={handleChange} className="compose-subject" type="text" id="subject" name="subject" placeholder="Subject" />
 
                     <textarea onChange={handleChange} rows={15} cols={50} maxLength={200} name="body" id="body"></textarea>
                     <button>Send</button>
