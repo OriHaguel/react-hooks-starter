@@ -18,6 +18,7 @@ export const emailService = {
     isDeleted,
     isUnRead,
     isDrafted,
+    isNotDrafted,
 }
 
 const KEY = 'mailDB'
@@ -110,6 +111,17 @@ function isDrafted(mail) {
     return get(mail.id)
         .then(mail => {
             mail.isDrafted = true
+            return Promise.resolve(mail)
+        }).then((mail) => {
+            save(mail)
+            return Promise.resolve(mail)
+        })
+
+}
+function isNotDrafted(mail) {
+    return get(mail.id)
+        .then(mail => {
+            mail.isDrafted = false
             return Promise.resolve(mail)
         }).then((mail) => {
             save(mail)

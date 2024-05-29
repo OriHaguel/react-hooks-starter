@@ -16,7 +16,7 @@
     background-color: #fefefe;
     margin: 5% auto 15% auto;
     text-align: center;
-   
+
     padding: 20px;
 }
 
@@ -33,20 +33,17 @@
     margin: 20px auto;
     resize: none;
 }
-.review-form-note{
-    width:30vw;
+
+.review-form-note {
+    width: 30vw;
     height: 30vh;
     position: fixed;
     right: 33vw;
 }
 
-.review-form input,
-.review-form button {
-    margin: 5px;
-}
-.review-form
 
-.review-add .btn-toggle-modal {
+
+.review-form .review-add .btn-toggle-modal {
     position: absolute;
     right: 0;
     top: 0;
