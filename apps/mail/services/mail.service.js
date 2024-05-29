@@ -16,6 +16,7 @@ export const emailService = {
     getDefaultMail,
     isStared,
     isDeleted,
+    isUnRead
 }
 
 const KEY = 'mailDB'
@@ -64,6 +65,18 @@ function isRead(mail) {
     return get(mail.id)
         .then(mail => {
             mail.isRead = true
+            return Promise.resolve(mail)
+        }).then((mail) => {
+            save(mail)
+            return Promise.resolve(mail)
+        })
+
+
+}
+function isUnRead(mail) {
+    return get(mail.id)
+        .then(mail => {
+            mail.isRead = false
             return Promise.resolve(mail)
         }).then((mail) => {
             save(mail)
@@ -203,7 +216,7 @@ function _createEmail() {
     return {
         id: utilService.makeId(),
         subject: utilService.makeLorem(3),
-        body: utilService.makeLorem(30),
+        body: utilService.makeLorem(150),
         isRead: false,
         isStared: false,
         isDeleted: false,
