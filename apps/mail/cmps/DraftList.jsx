@@ -1,4 +1,5 @@
-import { MailPreview } from "./MailPreview.jsx"
+import { DraftPreview } from "./DraftPreview.jsx"
+
 
 export function DraftList({ mails, onSelect, setMails }) {
     return <table>
@@ -7,7 +8,7 @@ export function DraftList({ mails, onSelect, setMails }) {
             {
                 mails.map(mail => {
                     return mail.isDrafted === true && <tr className={`mail-data ${mail.isRead ? 'read' : ''}`} key={mail.id}>
-                        <MailPreview mail={mail} onSelect={onSelect} setMails={setMails} />
+                        <DraftPreview mail={mail} onSelect={onSelect} setMails={setMails} />
                     </tr>
                 }
 
