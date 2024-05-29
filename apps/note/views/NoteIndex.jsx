@@ -3,17 +3,19 @@
 const { useState, useEffect } = React
 const { Link, useSearchParams } = ReactRouterDOM
 const { useParams, useNavigate } = ReactRouter
+import { EditNote } from "../cmps/updatenote/edit-note.jsx"
 import { NewNoteEdit } from "../cmps/createnote/new-note-edit.jsx"
 import { NotesList } from "../cmps/viewnotes/noteslist.jsx"
 import { NewNote } from "../cmps/createnote/new-note.jsx"
-import { EditNote } from "../cmps/updatenote/edit-note.jsx"
 import { NotesFilter } from "../cmps/notes-filter.jsx"
 import { NoteList } from "../cmps/NoteList.jsx"
+
 
 
 import { eventBusService, showErrorMsg, showSuccessMsg } from '../../../services/event-bus.service.js'
 //import { utilService } from '../../../services/util.service.js'
 import { noteService } from "../../../services/note-service.js"
+import { utilService } from "../../../services/util.service.js"
 
 export function NoteIndex() {
     const navigate = useNavigate()
@@ -21,7 +23,7 @@ export function NoteIndex() {
     const [isLoading, setIsLoading] = useState(false)
     const [searchParams, setSearchParams] = useSearchParams()
     const [filterBy, setFilterBy] = useState(noteService.getFilterFromSearchParams(searchParams))
-
+    console.log(EditNote);
 
     useEffect(() => {
 
@@ -78,6 +80,12 @@ export function NoteIndex() {
 
     function onSave(ev, note) {
         console.log(ev, note);
+        if (note.lists && typeof note.lists === "string") {
+            var todos = note.lists.split('\n').map((list) => { return { 'id': utilService.makeId(6), 'txt': list } })
+            note.lists = todos
+        }
+
+
 
         noteService.save(note)
             .then((res) => {
@@ -103,9 +111,7 @@ export function NoteIndex() {
     const isNotes = notes.length > 0
     return <div>
         <NotesFilter onSetFilter={onSetFilterBy} filterBy={filterBy} />
-        {isShowReviewModal && (
-            <EditNote saveNote={onSave} onRemove={removeNote} toggleNote={onToggleReviewModal} />)}
-
+        {isShowReviewModal && <EditNote saveNote={onSave} onRemove={removeNote} toggleNote={onToggleReviewModal} />}
         {!isShowNewNoteModal && <NewNote toggle={onToggleNewNoteModal} />}
         {isShowNewNoteModal && <NewNoteEdit onSaveRender={onSave} onCloce={onToggleNewNoteModal} />}
         {<NotesList notes={notes.filter((note) => note.isPinned === true)} onRemove={removeNote} onEditNote={onToggleReviewModal} togglePinned={togglePinned} />

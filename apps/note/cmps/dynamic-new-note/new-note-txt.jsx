@@ -8,7 +8,7 @@ export function NewNoteTxt(props) {
                     <button className="btn-txt btn-active"  ></button>
                     <button className="btn-img" onClick={() => props.toggleType("img")}></button>
                     <button className="btn-video" onClick={() => props.toggleType("video")} ></button>
-                    <button className="btn-list"  ></button>
+                    <button className="btn-list" onClick={() => props.toggleType("lists")} ></button>
                 </nav>
                 <form autofocus onSubmit={props.onSave}>
                     <textarea autofocus className="textarea-add-note" id="text" name="text" value={props.note.text ? props.note.text : ''} placeholder="Enter text..." onChange={props.handleChange} />

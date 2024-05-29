@@ -7,6 +7,7 @@ import { NewNoteImg } from "../dynamic-new-note/new-note-img.jsx"
 import { noteService } from "../../../../services/note-service.js"
 import { showErrorMsg } from '../../../../services/event-bus.service.js'
 import { NewNoteVideo } from "../dynamic-new-note/new-note-video.jsx"
+import { NewNoteLists } from "../dynamic-new-note/new-note-lists.jsx"
 
 export function NewNoteEdit({ onCloce, onSaveRender }) {
 
@@ -66,6 +67,8 @@ export function NewNoteEdit({ onCloce, onSaveRender }) {
                 return <NewNoteImg {...props} />
             case 'video':
                 return <NewNoteVideo {...props} />
+            case 'lists':
+                return <NewNoteLists {...props} />
 
 
         }
