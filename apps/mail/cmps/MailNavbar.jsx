@@ -46,6 +46,12 @@ export function MailNavbar({ setIsShowReviewModal, mails }) {
                     </Link>
                 </li>
                 <li className="nav-item">
+                    <Link to='/mail/draft' className="nav-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#444746"><path d="M240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520v-200H240v640h480v-440H520ZM240-800v200-200 640-640Z" /></svg>
+                        <span className="link-text">Draft</span>
+                    </Link>
+                </li>
+                <li className="nav-item">
                     <Link to='/mail/deleted' className="nav-link">
                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#444746"><path d="M0 0h24v24H0V0z" fill="none" /><path d="M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z" /></svg>
                         <span className="link-text">Trash</span>

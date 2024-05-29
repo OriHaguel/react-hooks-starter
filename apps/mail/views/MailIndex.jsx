@@ -53,6 +53,14 @@ export function MailIndex() {
     }
 
 
+    function onAutoSave(mailToAdd) {
+        return emailService.save(mailToAdd)
+            .then((savedMail) => emailService.isDrafted(savedMail))
+
+
+    }
+
+
 
 
 
@@ -71,7 +79,7 @@ export function MailIndex() {
 
             <MailFilter onSetFilter={onSetFilter} filterBy={filterBy} />
             <MailList mails={mails} onSelect={onSelect} setMails={setMails} />
-            {isShowReviewModal && <MailCompose onSave={onSave} setIsShowReviewModal={setIsShowReviewModal} />}
+            {isShowReviewModal && <MailCompose onSave={onSave} setIsShowReviewModal={setIsShowReviewModal} onAutoSave={onAutoSave} />}
         </section>
 
 

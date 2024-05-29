@@ -1,13 +1,12 @@
-
 import { MailPreview } from "./MailPreview.jsx"
 
-export function SentList({ mails, onSelect, setMails }) {
+export function DraftList({ mails, onSelect, setMails }) {
     return <table>
         <tbody className="mail-data-container">
 
             {
                 mails.map(mail => {
-                    return mail.isSent && !mail.isDrafted && <tr className={`mail-data ${mail.isRead ? 'read' : ''}`} key={mail.id}>
+                    return mail.isDrafted === true && <tr className={`mail-data ${mail.isRead ? 'read' : ''}`} key={mail.id}>
                         <MailPreview mail={mail} onSelect={onSelect} setMails={setMails} />
                     </tr>
                 }

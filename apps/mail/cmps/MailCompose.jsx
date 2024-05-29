@@ -1,14 +1,29 @@
 import { emailService } from "../../../apps/mail/services/mail.service.js"
 
-const { useState, useEffect } = React
+const { useState, useEffect, useRef } = React
 
-export function MailCompose({ onSave, setIsShowReviewModal }) {
+export function MailCompose({ onSave, setIsShowReviewModal, onAutoSave }) {
     const [addMail, setAddMail] = useState(emailService.getDefaultMail())
+    const intervalRef = useRef()
+
+
+
+    useEffect(() => {
+        intervalRef.current = setInterval(() => {
+            onAutoSave(addMail)
+                .then((mail) => setAddMail(prevMail => ({ ...prevMail, ...mail })))
+        }, 2000)
+
+        return () => clearInterval(intervalRef.current)
+    }, [addMail])
+
 
     function onSaveMail(ev) {
         ev.preventDefault()
         onSave(addMail)
+        clearInterval(intervalRef.current)
     }
+
 
 
     function handleChange({ target }) {
@@ -26,6 +41,7 @@ export function MailCompose({ onSave, setIsShowReviewModal }) {
                 break;
         }
         setAddMail(prevReview => ({ ...prevReview, [prop]: value }))
+
     }
 
 

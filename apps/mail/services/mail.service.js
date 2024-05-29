@@ -16,7 +16,8 @@ export const emailService = {
     getDefaultMail,
     isStared,
     isDeleted,
-    isUnRead
+    isUnRead,
+    isDrafted,
 }
 
 const KEY = 'mailDB'
@@ -105,6 +106,17 @@ function isDeleted(mail) {
             return Promise.resolve(mail)
         })
 }
+function isDrafted(mail) {
+    return get(mail.id)
+        .then(mail => {
+            mail.isDrafted = true
+            return Promise.resolve(mail)
+        }).then((mail) => {
+            save(mail)
+            return Promise.resolve(mail)
+        })
+
+}
 
 
 function addReview(mailId, reviewToSave) {
@@ -166,6 +178,7 @@ function getDefaultFilter() {
 
 function getDefaultMail() {
     return {
+
         subject: '',
         body: '',
         isRead: false,
