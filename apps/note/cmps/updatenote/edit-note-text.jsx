@@ -18,13 +18,25 @@ export function EditNoteText(props) {
                 </button>
                 <input
                     autoFocus
+                    name="subject"
+                    type='text'
+                    id="text"
+
+                    value={props.note.subject ? props.note.subject : ''}
+                    onChange={props.handleChange}
+
+                />
+                <input
+                    autoFocus
                     name="text"
                     type='text'
                     id="text"
+
                     value={props.note.text ? props.note.text : ''}
                     onChange={props.handleChange}
 
                 />
+
 
 
 

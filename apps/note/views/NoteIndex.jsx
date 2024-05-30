@@ -112,6 +112,13 @@ export function NoteIndex() {
                 navigate("/note")
             })
     }
+
+    function onSaveMailToNote(mail) {
+        onSave(mail)
+        navigate(`/note/${mail.id}`)
+        setIsShowReviewModal(true)
+
+    }
     function togglePinned(ev, note) {
         note.isPinned = !note.isPinned
         onSave(ev, note)
