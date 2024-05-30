@@ -245,6 +245,7 @@ function _createEmail() {
         isRead: false,
         isStared: false,
         isDeleted: false,
+        isPinned: false,
         sentAt: utilService.getRandomTimestamp(),
         removedAt: null,
         from: 'momo@momo.com',
