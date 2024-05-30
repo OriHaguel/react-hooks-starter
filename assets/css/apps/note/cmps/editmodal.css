@@ -40,15 +40,27 @@
     position: fixed;
     right: 33vw;
 }
+.subject-edit-note{
+    width:70%;
+    min-height: 40px ;
+    border-radius: 10px;
+}
 
 
 
-.review-form .review-add .btn-toggle-modal {
+ .btn-toggle-modal-note {
     position: absolute;
     right: 0;
     top: 0;
     padding: 5px 7px;
+    height: 25px;
+    width:25px;
     margin: 0;
+    left: -5px;
+    top: -10px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 10px;
 }
 
 

@@ -12,15 +12,16 @@ export function EditNoteText(props) {
 
         <form onSubmit={(ev) => props.onSave(ev)} className='review-form-note'>
             <div className='review-modal'>
-                <h1>edit note text</h1>
-                <button className='btn-toggle-modal'
-                >X
+
+                <button className='btn-toggle-modal-note'
+                >x
                 </button>
                 <input
                     autoFocus
                     name="subject"
                     type='text'
                     id="text"
+                    className="subject-edit-note"
 
                     value={props.note.subject ? props.note.subject : ''}
                     onChange={props.handleChange}
