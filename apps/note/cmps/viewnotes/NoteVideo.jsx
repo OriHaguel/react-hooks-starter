@@ -14,7 +14,7 @@ export function NoteVideo(props) {
         </div>
 
         <p>{props.note.text} </p>
-        <input className="btn-color" type="color" value="#ffffff" ></input>
+        <input className="btn-color" type="color" value="#ffffff" onChange={(ev) => console.log(ev)} ></input>
         <button className="btn-update" onClick={(ev) => update(ev)} ></button>
         <button className="btn-remove" onClick={() => remove(id)} ></button>
         <button onClick={(ev) => props.togglePinned(ev, props.note)}>p</button>

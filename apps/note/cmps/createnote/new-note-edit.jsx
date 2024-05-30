@@ -2,6 +2,7 @@
 
 const { useState, useEffect } = React
 const { useParams, useNavigate } = ReactRouter
+import { utilService } from "../../../../services/util.service.js"
 import { NewNoteTxt } from "../dynamic-new-note/new-note-txt.jsx"
 import { NewNoteImg } from "../dynamic-new-note/new-note-img.jsx"
 import { noteService } from "../../../../services/note-service.js"
@@ -24,7 +25,7 @@ export function NewNoteEdit({ onCloce, onSaveRender }) {
 
     function onSave(ev) {
         ev.preventDefault()
-        console.log(onSaveRender);
+
         onSaveRender(ev, note)
         onCloce()
     }
@@ -42,6 +43,29 @@ export function NewNoteEdit({ onCloce, onSaveRender }) {
 
         }
         setNote(prevNote => ({ ...prevNote, [prop]: value }))
+    }
+    function handleChangeTodos(ev, id) {
+        const { type, name: prop } = ev.target
+
+        let { value } = ev.target
+        console.log(type, prop, id, value);
+        value = value
+        console.log(note);
+        var newList = note.lists.find((list) => list.id === id)
+        newList.txt = value
+        console.log(newList);
+        var newLists = note.lists
+        setNote(prevNote => ({ ...prevNote, lists: newLists }))
+        console.log(note, note.lists);
+    }
+    function onAddList() {
+        console.log(note);
+        if (!note.lists) note.lists = []
+        console.log(note);
+        note.lists.push({ 'id': utilService.makeId(6), 'txt': '' })
+        var newLists = note.lists
+        setNote(prevNote => ({ ...prevNote, lists: newLists }))
+
     }
 
 
@@ -73,11 +97,25 @@ export function NewNoteEdit({ onCloce, onSaveRender }) {
 
         }
     }
+    function handleChangelists(ev, id) {
+        const { type, name: prop } = ev.target
 
+        let { value } = ev.target
+        console.log(id, value);
+        value = value
+        console.log(note.lists);
+        var newList = note.lists.find((list) => list.id === id)
+        console.log(newList);
+        newList.txt = value
+        console.log(newList);
+        var newLists = note.lists
+        setNote(prevNote => ({ ...prevNote, lists: newLists }))
+        console.log(note, note.lists)
+    }
 
     return (
 
-        <DynamicCmp cmpType={cmpReType} note={note} onSave={onSave} handleChange={handleChange} toggleType={onToggleCmpType} />
+        <DynamicCmp handleChangelists={handleChangelists} cmpType={cmpReType} note={note} onAddList={onAddList} onSave={onSave} handleChange={handleChange} toggleType={onToggleCmpType} />
 
     )
 }

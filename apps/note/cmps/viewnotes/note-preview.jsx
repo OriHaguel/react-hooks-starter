@@ -2,11 +2,14 @@ import { NoteText } from './NoteText.jsx'
 import { NoteImg } from './NoteImg.jsx'
 import { NoteVideo } from './NoteVideo.jsx'
 import { NoteTodos } from './NoteTodos.jsx'
+const { useState, useRef, useEffect } = React
 
 
 
+export function NotePreview({ isShowReviewModalColor, onToggleReviewModalColor,
+    note, onRemove, onEditNote, togglePinned, onSave }) {
 
-export function NotePreview({ note, onRemove, onEditNote, togglePinned }) {
+
 
     function DynamicCmp(props) {
 
@@ -19,7 +22,7 @@ export function NotePreview({ note, onRemove, onEditNote, togglePinned }) {
 
     return (
 
-        <DynamicCmp togglePinned={togglePinned} cmpType={note.type} note={note} onRemove={onRemove} onEditNote={onEditNote} />
+        <DynamicCmp onToggleReviewModalColor={onToggleReviewModalColor} isShowReviewModalColor={isShowReviewModalColor} togglePinned={togglePinned} cmpType={note.type} note={note} onRemove={onRemove} onEditNote={onEditNote} onSave={onSave} />
 
     )
 }

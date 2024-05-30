@@ -26,6 +26,7 @@ export function App() {
                 <Route path="/about" element={<About />} />
                 <Route path="/mail" element={<MailIndex />} />
                 <Route path="/mail/:mailId" element={<MailDetails />} />
+                <Route path="/note/:noteId" element={<NoteIndex />} />
                 <Route path="/note" element={<NoteIndex />} />
                 <Route path="/mail/sent" element={<SentIndex />} />
                 <Route path="/mail/stars" element={<StarIndex />} />

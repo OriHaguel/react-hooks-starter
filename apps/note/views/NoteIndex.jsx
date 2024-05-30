@@ -21,6 +21,7 @@ export function NoteIndex() {
     const navigate = useNavigate()
     const [notes, setNotes] = useState([])
     const [isLoading, setIsLoading] = useState(false)
+    const [isShowReviewModalColor, setIsShowReviewModalColor] = useState(true)
     const [searchParams, setSearchParams] = useSearchParams()
     const [filterBy, setFilterBy] = useState(noteService.getFilterFromSearchParams(searchParams))
     console.log(EditNote);
@@ -44,6 +45,7 @@ export function NoteIndex() {
                 //     .then(() => setCars(prevCars => prevCars.filter(car => car.id !== carId)))
                 setNotes(prevNotes => prevNotes.filter(note => note.id !== noteId))
                 showSuccessMsg(`note (${noteId}) removed successfully!`)
+                navigate('/note')
             })
             .catch(err => {
                 console.log('err:', err)
@@ -63,6 +65,13 @@ export function NoteIndex() {
         console.log(ev);
 
         setIsShowReviewModal((prevIsReviewModal) => !prevIsReviewModal)
+    }
+    function onToggleReviewModalColor(ev = false, type = false) {
+        if (ev) ev.stopPropagation()
+
+        console.log(ev);
+
+        setIsShowReviewModalColor((prevIsReviewModal) => !prevIsReviewModal)
     }
     const [isShowNewNoteModal, setIsShowNewNoteModal] = useState(null)
     function onToggleNewNoteModal() {
@@ -114,7 +123,8 @@ export function NoteIndex() {
         {isShowReviewModal && <EditNote saveNote={onSave} onRemove={removeNote} toggleNote={onToggleReviewModal} />}
         {!isShowNewNoteModal && <NewNote toggle={onToggleNewNoteModal} />}
         {isShowNewNoteModal && <NewNoteEdit onSaveRender={onSave} onCloce={onToggleNewNoteModal} />}
-        {<NotesList notes={notes.filter((note) => note.isPinned === true)} onRemove={removeNote} onEditNote={onToggleReviewModal} togglePinned={togglePinned} />
+        {<NotesList isShowReviewModalColor={isShowReviewModalColor} onToggleReviewModalColor={onToggleReviewModalColor} onSaveRender={onSave}
+            notes={notes.filter((note) => note.isPinned === true)} onRemove={removeNote} onEditNote={onToggleReviewModal} togglePinned={togglePinned} />
 
         }
         <div>No pined to show...</div>

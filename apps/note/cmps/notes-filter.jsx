@@ -22,9 +22,5 @@ export function NotesFilter({ filterBy, onSetFilter }) {
         <label htmlFor="subject"></label>
         <input className="input-search-note" type="text" id="subject" name="text" onChange={handleOnChange} />
 
-
-
-
-        <button>Filter</button>
     </form>
 }
