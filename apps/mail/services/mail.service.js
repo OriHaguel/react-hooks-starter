@@ -16,6 +16,9 @@ export const emailService = {
     getDefaultMail,
     isStared,
     isDeleted,
+    isUnRead,
+    isDrafted,
+    isNotDrafted,
 }
 
 const KEY = 'mailDB'
@@ -72,6 +75,18 @@ function isRead(mail) {
 
 
 }
+function isUnRead(mail) {
+    return get(mail.id)
+        .then(mail => {
+            mail.isRead = false
+            return Promise.resolve(mail)
+        }).then((mail) => {
+            save(mail)
+            return Promise.resolve(mail)
+        })
+
+
+}
 function isStared(mail) {
     return get(mail.id)
         .then(mail => {
@@ -91,6 +106,28 @@ function isDeleted(mail) {
             save(mail)
             return Promise.resolve(mail)
         })
+}
+function isDrafted(mail) {
+    return get(mail.id)
+        .then(mail => {
+            mail.isDrafted = true
+            return Promise.resolve(mail)
+        }).then((mail) => {
+            save(mail)
+            return Promise.resolve(mail)
+        })
+
+}
+function isNotDrafted(mail) {
+    return get(mail.id)
+        .then(mail => {
+            mail.isDrafted = false
+            return Promise.resolve(mail)
+        }).then((mail) => {
+            save(mail)
+            return Promise.resolve(mail)
+        })
+
 }
 
 
@@ -153,6 +190,7 @@ function getDefaultFilter() {
 
 function getDefaultMail() {
     return {
+
         subject: '',
         body: '',
         isRead: false,
@@ -203,7 +241,7 @@ function _createEmail() {
     return {
         id: utilService.makeId(),
         subject: utilService.makeLorem(3),
-        body: utilService.makeLorem(30),
+        body: utilService.makeLorem(150),
         isRead: false,
         isStared: false,
         isDeleted: false,

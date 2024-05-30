@@ -7,7 +7,7 @@ export function SentList({ mails, onSelect, setMails }) {
 
             {
                 mails.map(mail => {
-                    return mail.isSent && <tr className={`mail-data ${mail.isRead ? 'read' : ''}`} key={mail.id}>
+                    return mail.isSent && !mail.isDrafted && <tr className={`mail-data ${mail.isRead ? 'read' : ''}`} key={mail.id}>
                         <MailPreview mail={mail} onSelect={onSelect} setMails={setMails} />
                     </tr>
                 }

@@ -1,14 +1,29 @@
 import { emailService } from "../../../apps/mail/services/mail.service.js"
 
-const { useState, useEffect } = React
+const { useState, useEffect, useRef } = React
 
-export function MailCompose({ onSave, setIsShowReviewModal }) {
-    const [addMail, setAddMail] = useState(emailService.getDefaultMail())
+export function MailCompose({ onSave, setIsShowReviewModal, onAutoSave, mail }) {
+    const [addMail, setAddMail] = useState(mail || emailService.getDefaultMail())
+    const intervalRef = useRef()
+
+
+
+    useEffect(() => {
+        intervalRef.current = setInterval(() => {
+            onAutoSave(addMail)
+                .then((mail) => setAddMail(prevMail => ({ ...prevMail, ...mail })))
+        }, 2000)
+
+        return () => clearInterval(intervalRef.current)
+    }, [addMail])
+
 
     function onSaveMail(ev) {
         ev.preventDefault()
         onSave(addMail)
+        clearInterval(intervalRef.current)
     }
+
 
 
     function handleChange({ target }) {
@@ -26,6 +41,7 @@ export function MailCompose({ onSave, setIsShowReviewModal }) {
                 break;
         }
         setAddMail(prevReview => ({ ...prevReview, [prop]: value }))
+
     }
 
 
@@ -40,13 +56,13 @@ export function MailCompose({ onSave, setIsShowReviewModal }) {
 
                 <form className='review-form' onSubmit={onSaveMail}>
 
-                    <input onChange={handleChange} type="text" id="from" name="from" placeholder="From" />
+                    <input value={addMail.from} onChange={handleChange} type="text" id="from" name="from" placeholder="From" />
 
-                    <input onChange={handleChange} type="text" id="to" name="to" placeholder="To" />
+                    <input value={addMail.to} onChange={handleChange} type="text" id="to" name="to" placeholder="To" />
 
-                    <input onChange={handleChange} className="compose-subject" type="text" id="subject" name="subject" placeholder="Subject" />
+                    <input value={addMail.subject} onChange={handleChange} className="compose-subject" type="text" id="subject" name="subject" placeholder="Subject" />
 
-                    <textarea onChange={handleChange} rows={15} cols={50} maxLength={200} name="body" id="body"></textarea>
+                    <textarea value={addMail.body} onChange={handleChange} rows={15} cols={50} maxLength={200} name="body" id="body"></textarea>
                     <button>Send</button>
                 </form>
 
