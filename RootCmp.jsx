@@ -13,14 +13,16 @@ import { SentIndex } from "./apps/mail/views/SentIndex.jsx"
 import { StarIndex } from "./apps/mail/views/StarIndex.jsx"
 import { DeleteIndex } from "./apps/mail/views/DeleteIndex.jsx"
 import { DraftIndex } from "./apps/mail/views/DraftIndex.jsx"
-
-
+import { BookIndex } from "./pages/BookIndex.jsx"
+import { BookAdd } from './pages/BookAdd.jsx'
+import { BookDetails } from './pages/BookDetails.jsx'
+import { EditBook } from './pages/EditBook.jsx'
 
 
 
 export function App() {
     return <Router>
-        <section className="app">
+        <section className="app container">
             <AppHeader />
             <Routes>
                 <Route path="/" element={<Home />} />
@@ -32,7 +34,13 @@ export function App() {
                 <Route path="/mail/stars" element={<StarIndex />} />
                 <Route path="/mail/deleted" element={<DeleteIndex />} />
                 <Route path="/mail/draft" element={<DraftIndex />} />
+                <Route path="/books" element={<BookIndex />} />
+                <Route path="/books/edit/" element={<EditBook />} />
+                <Route path="/books/edit/:bookId" element={<EditBook />} />
+                <Route path="/books/:bookId" element={<BookDetails />} />
+                <Route path="/books/search/" element={<BookAdd />} />
             </Routes>
+
         </section>
         <UserMsg />
     </Router>

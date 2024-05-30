@@ -8,6 +8,9 @@ export const utilService = {
     getMonthName,
     getRandomTimestamp,
     getDateDetails,
+    debounce,
+    loadFromStorage,
+    saveToStorage,
 }
 
 function makeId(length = 6) {
@@ -106,4 +109,25 @@ function getDateDetails(timestamp) {
 }
 
 
+function saveToStorage(key, value) {
+    localStorage.setItem(key, JSON.stringify(value))
+}
+
+function loadFromStorage(key) {
+    const data = localStorage.getItem(key)
+    return (data) ? JSON.parse(data) : undefined
+}
+
+function debounce(func, wait = 100) {
+    let timeout
+
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout)
+            func(...args)
+        }
+        clearTimeout(timeout)
+        timeout = setTimeout(later, wait)
+    }
+}
 

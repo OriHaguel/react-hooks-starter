@@ -4,6 +4,8 @@ export const storageService = {
     post,
     put,
     remove,
+    save,
+    testPost
 }
 
 function query(entityType, delay = 500) {
@@ -63,4 +65,16 @@ function _makeId(length = 5) {
         text += possible.charAt(Math.floor(Math.random() * possible.length))
     }
     return text
+}
+
+function save(entityType, entities) {
+    localStorage.setItem(entityType, JSON.stringify(entities))
+}
+
+function testPost(entityType, newEntity) {
+    return query(entityType).then(entities => {
+        entities.push(newEntity)
+        _save(entityType, entities)
+        return newEntity
+    })
 }
