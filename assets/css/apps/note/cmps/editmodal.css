@@ -45,6 +45,13 @@
     min-height: 40px ;
     border-radius: 10px;
 }
+.budy-edit-note{
+    margin-top: 10%;
+    margin-bottom: 10%;
+    width:70%;
+    min-height: 100px ;
+    border-radius: 10px;
+}
 
 
 
@@ -98,4 +105,12 @@
 .review-container p {
     max-width: 90%;
     word-wrap: break-word;
+}
+.edit-modal-save-botton{
+    position: absolute;
+    bottom: 20%;
+    right: 40%;
+    width: 20%;
+    border: none;
+    border-radius: 6px;
 }

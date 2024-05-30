@@ -13,7 +13,7 @@ export function EditNoteText(props) {
         <form onSubmit={(ev) => props.onSave(ev)} className='review-form-note'>
             <div className='review-modal'>
 
-                <button className='btn-toggle-modal-note'
+                <button className='edit-modal-save-botton'
                 >x
                 </button>
                 <input
@@ -32,7 +32,7 @@ export function EditNoteText(props) {
                     name="text"
                     type='text'
                     id="text"
-
+                    className="budy-edit-note"
                     value={props.note.text ? props.note.text : ''}
                     onChange={props.handleChange}
 
