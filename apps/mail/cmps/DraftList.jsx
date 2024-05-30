@@ -7,7 +7,7 @@ export function DraftList({ mails, onSelect, setMails }) {
 
             {
                 mails.map(mail => {
-                    return mail.isDrafted === true && <tr className={`mail-data ${mail.isRead ? 'read' : ''}`} key={mail.id}>
+                    return mail.isDrafted === true && !mail.isDeleted && <tr className={`mail-data ${mail.isRead ? 'read' : ''}`} key={mail.id}>
                         <DraftPreview mail={mail} onSelect={onSelect} setMails={setMails} />
                     </tr>
                 }

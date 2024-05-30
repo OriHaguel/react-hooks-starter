@@ -5,12 +5,18 @@ const { Link } = ReactRouterDOM
 export function MailNavbar({ setIsShowReviewModal, mails }) {
 
     function starCounter() {
-        return mails.filter(mail => mail.isStared === true).length
+        if (mails.filter(mail => mail.isStared === true).filter(mail => mail.isDeleted === false).length === 0) {
+            return
+        }
+        return mails.filter(mail => mail.isStared === true).filter(mail => mail.isDeleted === false).length
     }
     function readCounter() {
-        return mails.filter(mail => mail.isRead === false).length
+        return mails.filter(mail => mail.isRead === false).filter(mail => mail.isSent === undefined).length
     }
     function sentCounter() {
+        if (mails.filter(mail => mail.isSent === true).filter(mail => mail.isRead === false).length === 0) {
+            return
+        }
         return mails.filter(mail => mail.isSent === true).filter(mail => mail.isRead === false).length
     }
 

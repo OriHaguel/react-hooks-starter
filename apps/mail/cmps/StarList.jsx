@@ -6,7 +6,7 @@ export function StarList({ mails, onSelect, setMails }) {
 
             {
                 mails.map(mail => {
-                    return mail.isStared && <tr className={`mail-data ${mail.isRead ? 'read' : ''}`} key={mail.id}>
+                    return mail.isStared && !mail.isDeleted && <tr className={`mail-data ${mail.isRead ? 'read' : ''}`} key={mail.id}>
                         <MailPreview mail={mail} onSelect={onSelect} setMails={setMails} />
                     </tr>
                 }
