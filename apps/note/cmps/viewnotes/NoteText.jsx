@@ -26,6 +26,7 @@ export function NoteText(props) {
 
     return <article className="note-preview">
         <p>{props.note.text} </p>
+        <p>{props.note.subject} </p>
         <button className="btn-color" type="color" value="#ffffff" onClick={(ev) => props.onToggleReviewModalColor(ev)} ></button>
         <button className="btn-update" onClick={(ev) => update(ev)} ></button>
         <button className="btn-remove" onClick={() => remove(id)} ></button>

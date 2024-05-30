@@ -50,7 +50,7 @@ export function MailCompose({ onSave, setIsShowReviewModal, onAutoSave, mail }) 
             <div className='mail-modal'>
                 <div className="modal-header">
                     <h1>New Message</h1>
-                    <button className="close-button" onClick={() => setIsShowReviewModal(false)}>x</button>
+                    <button onClick={() => setIsShowReviewModal(false)}>x</button>
                 </div>
 
 
