@@ -1,3 +1,21 @@
+.book-main-section button {
+    cursor: pointer;
+    background-color: rgb(233, 195, 223);
+    margin: 0.5em;
+    border: 0;
+    padding: 0.5em 0.8em;
+    border-radius: 4px
+}
+
+.details button {
+    cursor: pointer;
+    background-color: rgb(233, 195, 223);
+    border-radius: 4px;
+    padding: 0.5em 0.8em;
+    border: 0;
+    margin-right: 1rem;
+}
+
 .details {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -26,7 +44,7 @@
 
 .book-details button {
     margin-right: 10px;
-    margin-top: 20px;
+
     border: 1px solid black;
     border-radius: 6px;
     background-color: whitesmoke;
