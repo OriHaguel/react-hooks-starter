@@ -11,7 +11,7 @@
 
 .navbar {
     width: 4rem;
-    height: 100vh;
+    height: 300vh;
     position: fixed;
     background-color: var(--bg-nav);
     transition: width 200ms ease;
@@ -116,6 +116,16 @@
     display: flex;
     align-items: center;
 
+}
+
+@media (max-width: 700px) {
+    .filter {
+        padding-left: 0px;
+    }
+
+    .mail-main {
+        margin-left: .84rem;
+    }
 }
 
 .filter input {

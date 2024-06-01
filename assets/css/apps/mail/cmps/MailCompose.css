@@ -2,10 +2,15 @@
     width: 600px;
     height: 616px;
     margin-left: 40rem;
-    position: absolute;
+    position: fixed;
     /* z-index: 100; */
-    bottom: 0;
+    /* bottom: 0; */
     right: 5rem;
+    margin-top: -11rem;
+}
+
+table {
+    position: relative;
 }
 
 .mail-modal {

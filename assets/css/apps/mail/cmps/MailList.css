@@ -8,16 +8,15 @@
      display: flex;
      padding: 10px 0px;
      background-color: #ffffff;
-     /* margin-bottom: 1px; */
      width: 95.68vw;
+     /* width: 100px; */
      letter-spacing: normal;
      text-align: start;
      line-height: normal;
-     /* transition: .05s; */
      cursor: pointer;
-     /* box-shadow: inset rgba(47, 69, 92, 0.192) 3px -2px 1px 0px; */
      box-shadow: var(--webkit-box-shadow);
-     height: 20px;
+     height: 2.25rem;
+
  }
 
  .input-td {
@@ -62,10 +61,16 @@
  .text-container {
      width: 100%;
      display: flex;
+
      justify-content: start;
      align-items: center;
-
+     overflow: hidden;
+     text-overflow: ellipsis;
+     white-space: nowrap;
+     flex-basis: 0;
+     flex-grow: 1;
  }
+
 
  .text-container .span-text {
      margin-right: 1rem;
@@ -74,7 +79,27 @@
      letter-spacing: normal;
      color: #5f6368;
      font-family: "Google Sans", Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
-     white-space: nowrap;
+
+
+ }
+
+ @media (max-width: 700px) {
+     .text-container {
+         flex-direction: column;
+
+     }
+
+     .mail-data {
+         height: 4rem;
+     }
+
+     .text-container .span-text {
+         font-size: 15px;
+     }
+
+
+
+     /* .filter input {} */
  }
 
 
@@ -96,6 +121,4 @@
      margin-left: auto;
      margin-right: 1rem;
      font-family: sans-serif;
-     white-space: nowrap;
-
  }
