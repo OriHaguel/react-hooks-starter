@@ -14,10 +14,10 @@ export function MailNavbar({ setIsShowReviewModal, mails }) {
         return mails.filter(mail => mail.isRead === false).filter(mail => mail.isSent === undefined).length
     }
     function sentCounter() {
-        if (mails.filter(mail => mail.isSent === true).filter(mail => mail.isRead === false).length === 0) {
+        if (mails.filter(mail => mail.isSent === true).filter(mail => mail.isRead === false).filter(mail => mail.isDrafted === false).length === 0) {
             return
         }
-        return mails.filter(mail => mail.isSent === true).filter(mail => mail.isRead === false).length
+        return mails.filter(mail => mail.isSent === true).filter(mail => mail.isRead === false).filter(mail => mail.isDrafted === false).length
     }
 
     return (

@@ -51,3 +51,13 @@
 
 
 }
+
+@media (max-width: 700px) {
+    .mail-details-container {
+        margin-left: 2rem;
+    }
+
+    .mail-details-container p {
+        margin: 0;
+    }
+}

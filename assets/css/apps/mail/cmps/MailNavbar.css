@@ -163,4 +163,13 @@
     .filter input {
         margin-right: 0px;
     }
+
+    .navbar {
+        width: 1.2rem;
+    }
+
+    .nav-link svg {
+        margin-left: -.5rem;
+    }
+
 }
