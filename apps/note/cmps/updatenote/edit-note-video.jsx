@@ -11,9 +11,9 @@ export function EditNoteVideo(props) {
     return <section className='review-add'>
 
         <form onSubmit={(ev) => props.onSave(ev)} className='review-form-note'>
-            <div className='review-modal'>
+            <div className='review-modal-note'>
                 <h1>edit note video</h1>
-                <button className='btn-toggle-modal'
+                <button className='btn-toggle-modal-note'
                 >X
                 </button>
                 <input
@@ -30,7 +30,7 @@ export function EditNoteVideo(props) {
 
 
 
-                <button>Save</button>
+                <button className='btn-save-modal-note'>Save</button>
             </div>
         </form>
 

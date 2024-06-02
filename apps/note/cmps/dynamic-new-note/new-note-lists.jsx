@@ -12,11 +12,10 @@ export function NewNoteLists(props) {
                 </nav>
                 <form autoFocus onSubmit={props.onSave}>
 
-                    <textarea autoFocus className="textarea-add-note" id="text" name="lists" value={props.note.text ? props.note.text : ''} placeholder="Enter text..." onChange={props.handleChange} />
-                    {<p className="note-save" onClick={props.onAddList} >add line here</p>}
-                    {props.note.lists && props.note.lists.map(line => {
+                    {<p className="note-line-add" onClick={props.onAddList} >add line here</p>}
+                    {props.note.lists && props.note.lists.length > 0 && props.note.lists.map(line => {
                         return <p key={line.id}><input value={line.txt ? line.txt : ''} onChange={(ev) => props.handleChangelists(ev, line.id)} type="text" id={line.id} name={line.id} />
-                            <label htmlFor={line.id}>{line.txt ? line.txt : 'enter somthing'}</label></p>
+                            <label htmlFor={line.id}></label></p>
                     })
                     }
 
@@ -27,3 +26,4 @@ export function NewNoteLists(props) {
         </section>
     )
 }
+//   <textarea autoFocus className="textarea-add-note" id="text" name="lists" value={props.note.text ? props.note.text : ''} placeholder="Enter text..." onChange={props.handleChange} />

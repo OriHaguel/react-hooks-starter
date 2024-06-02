@@ -5,14 +5,12 @@
   .list-bar{
     right: 0;
 
+
 -webkit-box-sizing: border-box;
 box-sizing: border-box;
-display: -webkit-box;
-display: -webkit-flex;
 display: flex;
 -webkit-flex-direction: column;
 flex-direction: column;
-height: -webkit-calc(100% - 64px);
 height: calc(100% - 64px);
 min-height: auto;
 overflow: hidden;
@@ -21,12 +19,15 @@ position: fixed;
 top: 64px;
 -webkit-transition-duration: 150ms;
 transition-duration: 150ms;
--webkit-transition-property: width,box-shadow,border-radius;
-transition-property: width,box-shadow,border-radius;
 -webkit-transition-timing-function: cubic-bezier(0.4,0,0.2,1);
 transition-timing-function: cubic-bezier(0.4,0,0.2,1);
-width: 280px;
-z-index: 985;
+width:50px;
+transition:  200ms ease;
+z-index: 1;
+background-color:#f2f6fc;
+ }
+ .list-bar:hover{
+   width: 280px;
  }
  .list-bar > * {
   
@@ -50,11 +51,47 @@ z-index: 985;
         width: 100%;
         
  }
+
  .fa-trash{
     padding: 0 12px;
  }
  .list-child > span{
-    margin-right: 20px;
+   display: none;
+   position: absolute;
+   right: 70px;
+ }
+ .list-bar:hover .list-child > span{
+   display: block;
+   position: absolute;
+   right: 70px;
+ }
+ .list-child:hover{
+   background-color: azure;
+ }
+ .btn-light-note{
+  
+ 
+   position: absolute;
+   right: 10px;
+  
+   background-size: cover;
+   border: none;
+ }
+ .btn-trash-note{
+  
+   position: absolute;
+   right: 10px;
+  
+   background-size: cover;
+   border: none;
+ }
+ .btn-archive-note{
+
+   position: absolute;
+   right: 10px;
+  
+   background-size: cover;
+   border: none;
  }
 
 

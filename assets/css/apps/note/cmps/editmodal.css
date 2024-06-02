@@ -9,15 +9,25 @@
     padding-top: 50px;
 }
 
-.review-add .review-modal {
-    height: 100%;
+.review-add .review-modal-note {
+    min-height: 250px;
     width: 100%;
     position: relative;
     background-color: #fefefe;
     margin: 5% auto 15% auto;
     text-align: center;
-
+border-radius: 15px;
     padding: 20px;
+}
+.btn-save-modal-note{
+    position: absolute;
+    bottom: 2em;
+    right:30%;
+    border: none;
+    background-color: #eceff4;
+    width: 33%;
+    height: 3em;
+    border-radius: 10px;
 }
 
 .review-modal h1 {
@@ -35,8 +45,8 @@
 }
 
 .review-form-note {
-    width: 30vw;
-    height: 30vh;
+    
+   min-height: 25vh;
     position: fixed;
     right: 33vw;
 }

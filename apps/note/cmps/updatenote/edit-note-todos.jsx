@@ -11,9 +11,9 @@ export function EditNoteTodos(props) {
     return <section className='review-add'>
 
         <form onSubmit={(ev) => props.onSave(ev)} className='review-form-note'>
-            <div className='review-modal'>
+            <div className='review-modal-note'>
                 <h1>edit note text</h1>
-                <button className='btn-toggle-modal'
+                <button className='btn-toggle-modal-note'
                 >X
                 </button>
                 {props.note.lists.map(line => {
@@ -26,7 +26,7 @@ export function EditNoteTodos(props) {
 
 
 
-                <button>Save</button>
+                <button className='btn-save-modal-note'>Save</button>
             </div>
         </form>
 

@@ -11,9 +11,9 @@ export function EditNoteText(props) {
     return <section className='review-add'>
 
         <form onSubmit={(ev) => props.onSave(ev)} className='review-form-note'>
-            <div className='review-modal'>
+            <div className='review-modal-note'>
 
-                <button className='edit-modal-save-botton'
+                <button className='btn-toggle-modal-note'
                 >x
                 </button>
                 <input
@@ -43,7 +43,7 @@ export function EditNoteText(props) {
 
 
 
-                <button>Save</button>
+                <button className='btn-save-modal-note'>Save</button>
             </div>
         </form>
 
