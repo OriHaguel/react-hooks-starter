@@ -38,7 +38,7 @@ export function NoteIndex() {
 
 
     function removeNote(noteId) {
-        console.log(noteId);
+
         noteService.remove(noteId)
             .then(() => {
                 //  ev.stopPropagation()
@@ -56,28 +56,27 @@ export function NoteIndex() {
     }
 
     function onSetFilterBy(filter) {
-        console.log(filter);
+
         setFilterBy(prevFilter => ({ ...prevFilter, ...filter }))
     }
     const [isShowReviewModal, setIsShowReviewModal] = useState(null)
     function onToggleReviewModal(ev = false, type = false) {
         if (ev) ev.stopPropagation()
 
-        console.log(ev);
+
 
         setIsShowReviewModal((prevIsReviewModal) => !prevIsReviewModal)
     }
     function onToggleTrash(ev = false, isTrash) {
         if (ev) ev.stopPropagation()
 
-        console.log(ev);
+
 
         setisShowTrashToggle(isTrash)
     }
     function onToggleReviewModalColor(ev = false, note) {
         if (ev) ev.stopPropagation()
-        console.log(note)
-        console.log(ev);
+
         note.isShowReviewModalColor = !note.isShowReviewModalColor
         setIsShowReviewModalColor((prevIsReviewModal) => !prevIsReviewModal)
     }
@@ -87,7 +86,7 @@ export function NoteIndex() {
         setIsShowNewNoteModal((prevIsReviewModal) => !prevIsReviewModal)
     }
     function onSetRender() {
-        console.log(notes);
+
         noteService.query()
             .then(notes => {
                 setNotes(notes)
@@ -96,10 +95,10 @@ export function NoteIndex() {
     }
 
     function onSave(ev, note) {
-        console.log(note)
+
         if (!note.color) note.color = 'w'
         if (!note.isShowReviewModalColor) note.isShowReviewModalColor = false
-        console.log(ev, note);
+
         if (note.lists && typeof note.lists === "string") {
             var todos = note.lists.split('\n').map((list) => { return { 'id': utilService.makeId(6), 'txt': list } })
             note.lists = todos
@@ -110,11 +109,11 @@ export function NoteIndex() {
         noteService.save(note)
             .then((res) => {
                 navigate("/note")
-                console.log(res);
+
                 noteService.query()
                     .then(notes => {
                         setNotes(notes)
-                        console.log(notes);
+
                     })
             })
             .catch(() => {
@@ -155,7 +154,7 @@ export function NoteIndex() {
 
         noteService.saveAsEmail(note).then((res) => {
             navigate("/note")
-            console.log(res);
+
 
         })
             .catch(() => {
@@ -171,7 +170,7 @@ export function NoteIndex() {
         {!isShowTrashToggle && !isShowNewNoteModal && <NewNote toggle={onToggleNewNoteModal} />}
         {!isShowTrashToggle && isShowNewNoteModal && <NewNoteEdit onSaveRender={onSave} onCloce={onToggleNewNoteModal} />}
         <NotesFilter onSetFilter={onSetFilterBy} filterBy={filterBy} />
-        {notes.filter((note) => note.isPinned === true).length > 0 && <div> pined keeps</div>}
+        {notes.filter((note) => note.isPinned === true && note.isDeleted === false).length > 0 && <div> pined keeps</div>}
 
         {!isShowTrashToggle && <NotesList moveToTrashToggle={moveToTrashToggle} saveAsEmail={saveAsEmail} isShowReviewModalColor={isShowReviewModalColor} onToggleReviewModalColor={onToggleReviewModalColor} onSaveRender={onSave}
             notes={notes.filter((note) => note.isPinned === true && note.isDeleted === false)} onRemove={removeNote} onEditNote={onToggleReviewModal} togglePinned={togglePinned} />

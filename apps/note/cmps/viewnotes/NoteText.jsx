@@ -28,7 +28,7 @@ export function NoteText(props) {
         <p className="body-text">{props.note.text} </p>
         <button className="btn-color" type="color" value="#ffffff" onClick={(ev) => props.onToggleReviewModalColor(ev, props.note)} ></button>
         <button className="btn-update" onClick={(ev) => update(ev)} ></button>
-        <button className="btn-remove" onClick={(ev) => props.moveToTrashToggle(ev, props.note)} ></button>
+        <button className="btn-remove" onClick={(ev) => props.note.isDeleted === true ? remove(props.note.id) : props.moveToTrashToggle(ev, props.note)} ></button>
         <button className="btn-pin" onClick={(ev) => props.togglePinned(ev, props.note)}>p</button>
         <button className="btn-mail" onClick={() => props.saveAsEmail(props.note)}></button>
         {props.note.isShowReviewModalColor && <ColorPicker note={props.note} onSave={props.onSave} />}

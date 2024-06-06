@@ -24,12 +24,15 @@ const MAILKEY = 'mailDB'
 //regExp.test(note.vendor)
 
 function query(filterBy = {}) {
-    console.log(filterBy);
+
     return storageService.query(KEY)
         .then(notes => {
+            notes = _createNotes()
+            console.log(notes)
             if (filterBy.text) {
                 const regExp = new RegExp(filterBy.text, 'i')
                 notes = notes.filter(note => regExp.test(note.text))
+
 
             }
 
@@ -127,17 +130,35 @@ const note = {
     to: 'user@appsus.com'
 }
 
-function _createNote(noteValues) {
-    const { type, info, isPinned, style } = noteValues
+function _createNote() {
+    let isImgOrVideo = utilService.getRandomIntInclusive(0, 4) > 2
+    var isText = utilService.getRandomIntInclusive(0, 4) > 2
     return {
         id: utilService.makeId(),
-        type,
-        info,
-        isPinned,
-        style,
-        createdAt: getCurrDate()
+
+        text: utilService.makeLorem(utilService.getRandomIntInclusive(0, 80)),
+        isPinned: false,
+        color: artColor[utilService.getRandomIntInclusive(0, artColor.length - 1)],
+        createdAt: getCurrDate(),
+        isDeleted: false,
+        isShowReviewModalColor: false,
+        type: "text",
+        vidUrl: isImgOrVideo && !isText ? 'https://www.youtube.com/embed/SXYV466i4QY?si=v0X6IHPEkwbOe590' : '',
+        imgUrl: !isImgOrVideo && !isText ? 'https://images.app.goo.gl/rC2PVLbh1jfLYCgH9' : ''
+
     }
+
+
 }
+
+
+const artColor = [
+    'FAAFA7',
+    , 'F39F76',
+    'FFF8B8',
+
+    'E2F5D3'
+]
 function getCurrDate() {
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
@@ -149,15 +170,23 @@ function getCurrDate() {
 }
 
 function _createNotes() {
+
     let notes = storageServiceDb.loadFromStorage(KEY)
-    if (!notes || !notes.length) {
+    console.log(notes);
+    if (!notes || !notes.length || !!notes.length < 1) {
         notes = []
         for (let i = 0; i < 6; i++) {
             notes.push(_createNote())
+            console.log(notes);
         }
-        storageServiceDb.saveToStorage(KEY, mails)
+        storageServiceDb.saveToStorage(KEY, notes)
     }
+    return notes
 }
+
+
+
+
 
 /*function addReview(mailId, reviewToSave) {
     return get(mailId).then(mail => {
