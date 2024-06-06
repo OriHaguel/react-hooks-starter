@@ -1,13 +1,22 @@
-export function ColorPicker(onChangePicker, note) {
-    const artColor = [
-        '#FAAFA7',
-        , '#F39F76',
-        '#FFF8B8',
+export function ColorPicker({ note, onSave }) {
+    console.log(note)
+    function onChangePicker(ev, note, color) {
+        console.log(note.color, note)
+        note.color = color
 
-        '#E2F5D3'
+
+
+    }
+
+    const artColor = [
+        'FAAFA7',
+        , 'F39F76',
+        'FFF8B8',
+
+        'E2F5D3'
     ]
     return <div className="color-picker-container">
-        {artColor.map(color => <button key={color} className={`button-picker ${color}`} onClick={() => onChangePicker(note, color)}></button>
+        {artColor.map(color => <button key={color} className={`button-picker ${color}`} onClick={(ev) => onChangePicker(ev, note, color)}></button>
         )}
     </div>
 

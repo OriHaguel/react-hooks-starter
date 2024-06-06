@@ -1,4 +1,5 @@
 .notes-container{
+    
     background-color: #fff; 
     width: 90vw;
     column-count: 3; 
@@ -9,18 +10,23 @@
     gap: 20px;
 }
 .note-preview {
-  
+    background-color: #fff;
+    border: 0.5px solid;
+    border-color: #e0e0e0;
     margin-bottom: 10px;
     position: relative;
     display: block;
     border-radius: 8px;
-    box-shadow:  1px 0px 5px rgb(190, 190, 191, .73);
+    
     margin: 5px;
     align-items: center;
     border-radius: 9px;
     margin: 12px;
     padding-right: 20px;
     padding: 10px;
+    }
+    .note-preview:hover{
+        box-shadow:  1px 0px 5px rgb(190, 190, 191, .73);
     }
     .note-preview img {
         width: 100%;
@@ -29,6 +35,35 @@
     .note-preview p {
         margin-bottom: 50px;
         overflow-wrap: break-word;
+    }
+    .btn-pin{
+        background-image: url(../../../../../assets/img/icons-note/icon/pin.png);
+        width: 25px;
+        height: 25px;
+        position: absolute;
+        
+        bottom:  15px;
+        background-size: cover;
+        border: none;
+    }
+    .input-check-note :checked{
+        color: #F39F76;
+    }
+    .btn-mail{
+        background-image: url(../../../../../assets/img/icons-note/icon/mail.png);
+        width: 25px;
+        height: 25px;
+        position: absolute;
+        left: 60px;
+        bottom:  15px;
+        background-size: cover;
+        border: none;
+    }
+    .body-text{
+      
+        position: relative;
+        left: 1em;
+        bottom: 1em;
     }
     
     .btn-update{
@@ -63,6 +98,29 @@
         right: 70px;
         bottom:  15px;
     }  
-    .clickable {
-        cursor: pointer;
+    .FAAFA7{
+        background-color:#FAAFA7 ;
     }
+    .F39F76{
+        background-color:#F39F76 ;
+    }
+    .FFF8B8{
+        background-color:#FFF8B8 ;
+    }
+    .FAAFA7{
+        background-color:#E2F5D3 ;
+        
+    }
+    .button-picker{
+        bottom: none;
+        margin: 5px;
+        height: 35px;
+        width: 35px;
+        border-radius: 50%;
+    }
+    .color-picker-container{
+        position: absolute;
+        width: 190px;
+        bottom: -45px;
+    }
+        

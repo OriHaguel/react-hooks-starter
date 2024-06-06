@@ -25,8 +25,7 @@
 @import './cmps/UserMsg.css';
 @import './cmps/AppHeader.css';
 @import './apps/note/views/NoteIndex.css';
-
-/* @import './apps/note/cmps/NoteList.css'; */
+ @import './apps/note/cmps/NoteList.css'; 
 @import'./apps/note/cmps/editmodal.css';
 @import './apps/note/cmps/newnote.css';
 /* import books */

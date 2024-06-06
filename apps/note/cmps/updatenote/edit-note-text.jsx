@@ -11,16 +11,17 @@ export function EditNoteText(props) {
     return <section className='review-add'>
 
         <form onSubmit={(ev) => props.onSave(ev)} className='review-form-note'>
-            <div className='review-modal'>
-                <h1>edit note text</h1>
-                <button className='btn-toggle-modal'
-                >X
+            <div className='review-modal-note'>
+
+                <button className='btn-toggle-modal-note'
+                >x
                 </button>
                 <input
                     autoFocus
                     name="subject"
                     type='text'
                     id="text"
+                    className="subject-edit-note"
 
                     value={props.note.subject ? props.note.subject : ''}
                     onChange={props.handleChange}
@@ -31,7 +32,7 @@ export function EditNoteText(props) {
                     name="text"
                     type='text'
                     id="text"
-
+                    className="budy-edit-note"
                     value={props.note.text ? props.note.text : ''}
                     onChange={props.handleChange}
 
@@ -42,7 +43,7 @@ export function EditNoteText(props) {
 
 
 
-                <button>Save</button>
+                <button className='btn-save-modal-note'>Save</button>
             </div>
         </form>
 

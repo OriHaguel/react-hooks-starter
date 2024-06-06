@@ -10,12 +10,15 @@ export const noteService = {
     getDefaultFilter,
     remove,
     getEmptyNote,
-    getFilterFromSearchParams
+    getFilterFromSearchParams,
+    saveAsEmail
+
 
 
 }
 
 const KEY = 'noteDB'
+const MAILKEY = 'mailDB'
 //_createNotes
 
 //regExp.test(note.vendor)
@@ -25,9 +28,9 @@ function query(filterBy = {}) {
     return storageService.query(KEY)
         .then(notes => {
             if (filterBy.text) {
+                const regExp = new RegExp(filterBy.text, 'i')
+                notes = notes.filter(note => regExp.test(note.text))
 
-                const regExp = new RegExp(filterBy.txt, 'i')
-                notes = notes.filter(note => note.text === filterBy.text)
             }
 
             if (filterBy.minSpeed) {
@@ -46,12 +49,13 @@ function get(noteId) {
         })
 }
 
-function getEmptyNote(type = 'text', info = {}, isPinned = false, style = {}) {
+function getEmptyNote(type = 'text', info = {}, isPinned = false, color = '', isDeleted = false) {
     return {
         type,
         info,
         isPinned,
-        style,
+        color,
+        isDeleted
     }
 
 
@@ -74,6 +78,9 @@ function remove(noteId) {
     console.log(query());
     return storageService.remove(KEY, noteId)
 
+}
+function saveAsEmail(note) {
+    return storageService.post(MAILKEY, note)
 }
 
 function save(note) {

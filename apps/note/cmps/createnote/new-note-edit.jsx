@@ -62,7 +62,7 @@ export function NewNoteEdit({ onCloce, onSaveRender }) {
         console.log(note);
         if (!note.lists) note.lists = []
         console.log(note);
-        note.lists.push({ 'id': utilService.makeId(6), 'txt': '' })
+        note.lists.push({ 'id': utilService.makeId(6), 'txt': '', isCheked: false })
         var newLists = note.lists
         setNote(prevNote => ({ ...prevNote, lists: newLists }))
 

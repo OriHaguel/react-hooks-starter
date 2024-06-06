@@ -22,6 +22,7 @@ export function NoteIndex() {
     const [notes, setNotes] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const [isShowReviewModalColor, setIsShowReviewModalColor] = useState(true)
+    const [isShowTrashToggle, setisShowTrashToggle] = useState(false)
     const [searchParams, setSearchParams] = useSearchParams()
     const [filterBy, setFilterBy] = useState(noteService.getFilterFromSearchParams(searchParams))
     console.log(EditNote);
@@ -66,11 +67,18 @@ export function NoteIndex() {
 
         setIsShowReviewModal((prevIsReviewModal) => !prevIsReviewModal)
     }
-    function onToggleReviewModalColor(ev = false, type = false) {
+    function onToggleTrash(ev = false, isTrash) {
         if (ev) ev.stopPropagation()
 
         console.log(ev);
 
+        setisShowTrashToggle(isTrash)
+    }
+    function onToggleReviewModalColor(ev = false, note) {
+        if (ev) ev.stopPropagation()
+        console.log(note)
+        console.log(ev);
+        note.isShowReviewModalColor = !note.isShowReviewModalColor
         setIsShowReviewModalColor((prevIsReviewModal) => !prevIsReviewModal)
     }
     const [isShowNewNoteModal, setIsShowNewNoteModal] = useState(null)
@@ -88,6 +96,9 @@ export function NoteIndex() {
     }
 
     function onSave(ev, note) {
+        console.log(note)
+        if (!note.color) note.color = 'w'
+        if (!note.isShowReviewModalColor) note.isShowReviewModalColor = false
         console.log(ev, note);
         if (note.lists && typeof note.lists === "string") {
             var todos = note.lists.split('\n').map((list) => { return { 'id': utilService.makeId(6), 'txt': list } })
@@ -124,20 +135,60 @@ export function NoteIndex() {
         onSave(ev, note)
 
     }
+    function moveToTrashToggle(ev, note) {
+        note.isDeleted = !note.isDeleted
+        onSave(ev, note)
+
+    }
+
+    function saveAsEmail(note) {
+        if (!note.subject) note.subject = 'this is very important'
+        note.isRead = false
+        note.sentAt = Date.now(),
+            note.isSent = true,
+            note.isStared = false,
+            note.isDeleted = false,
+            note.removedAt = null,
+            note.from = 'momo@momo.com',
+            note.to = 'user@appsus.com'
+        note.body = note.text
+
+        noteService.saveAsEmail(note).then((res) => {
+            navigate("/note")
+            console.log(res);
+
+        })
+            .catch(() => {
+
+                showErrorMsg('Couldnt save')
+                navigate("/note")
+            })
+    }
     const isNotes = notes.length > 0
     return <div>
-        <NotesFilter onSetFilter={onSetFilterBy} filterBy={filterBy} />
-        {isShowReviewModal && <EditNote saveNote={onSave} onRemove={removeNote} toggleNote={onToggleReviewModal} />}
-        {!isShowNewNoteModal && <NewNote toggle={onToggleNewNoteModal} />}
-        {isShowNewNoteModal && <NewNoteEdit onSaveRender={onSave} onCloce={onToggleNewNoteModal} />}
-        {<NotesList isShowReviewModalColor={isShowReviewModalColor} onToggleReviewModalColor={onToggleReviewModalColor} onSaveRender={onSave}
-            notes={notes.filter((note) => note.isPinned === true)} onRemove={removeNote} onEditNote={onToggleReviewModal} togglePinned={togglePinned} />
 
+        {!isShowTrashToggle && isShowReviewModal && <EditNote saveNote={onSave} onRemove={removeNote} toggleNote={onToggleReviewModal} />}
+        {!isShowTrashToggle && !isShowNewNoteModal && <NewNote toggle={onToggleNewNoteModal} />}
+        {!isShowTrashToggle && isShowNewNoteModal && <NewNoteEdit onSaveRender={onSave} onCloce={onToggleNewNoteModal} />}
+        <NotesFilter onSetFilter={onSetFilterBy} filterBy={filterBy} />
+        {notes.filter((note) => note.isPinned === true).length > 0 && <div> pined keeps</div>}
+
+        {!isShowTrashToggle && <NotesList moveToTrashToggle={moveToTrashToggle} saveAsEmail={saveAsEmail} isShowReviewModalColor={isShowReviewModalColor} onToggleReviewModalColor={onToggleReviewModalColor} onSaveRender={onSave}
+            notes={notes.filter((note) => note.isPinned === true && note.isDeleted === false)} onRemove={removeNote} onEditNote={onToggleReviewModal} togglePinned={togglePinned} />
         }
-        <div>No pined to show...</div>
-        {isNotes ? <NotesList notes={notes.filter((note) => note.isPinned === false)} onRemove={removeNote} onEditNote={onToggleReviewModal} togglePinned={togglePinned} />
+
+        {!isShowTrashToggle && notes.filter((note) => note.isPinned === true && note.isDeleted === false).length > 0 && <div>Non pined keeps</div>}
+        {!isShowTrashToggle && isNotes ? <NotesList moveToTrashToggle={moveToTrashToggle}
+            saveAsEmail={saveAsEmail} notes={notes.filter((note) => note.isPinned === false && note.isDeleted === false)} onRemove={removeNote} onEditNote={onToggleReviewModal} togglePinned={togglePinned}
+            onToggleReviewModalColor={onToggleReviewModalColor} onSaveRender={onSave} isShowReviewModalColor={isShowReviewModalColor} />
             : <div>No notes to show...</div>
         }
+
+        {isShowTrashToggle && <NotesList moveToTrashToggle={moveToTrashToggle}
+            saveAsEmail={saveAsEmail} notes={notes.filter((note) => note.isDeleted === true)} onRemove={removeNote} onEditNote={onToggleReviewModal} togglePinned={togglePinned}
+            onToggleReviewModalColor={onToggleReviewModalColor} onSaveRender={onSave} isShowReviewModalColor={isShowReviewModalColor} />
+        }
+        {<NoteList onToggleTrash={onToggleTrash} />}
 
 
     </div>

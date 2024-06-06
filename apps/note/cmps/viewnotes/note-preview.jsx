@@ -6,23 +6,23 @@ const { useState, useRef, useEffect } = React
 
 
 
-export function NotePreview({ isShowReviewModalColor, onToggleReviewModalColor,
-    note, onRemove, onEditNote, togglePinned, onSave }) {
+export function NotePreview({ moveToTrashToggle, isShowReviewModalColor, onToggleReviewModalColor,
+    note, onRemove, onEditNote, togglePinned, onSave, saveAsEmail, handleChangeTodosCheck }) {
 
-
+    console.log(onToggleReviewModalColor);
 
     function DynamicCmp(props) {
 
         if (props.note.imgUrl) return <NoteImg {...props} />
         else if (props.note.vidUrl) return <NoteVideo {...props} />
         else if (props.note.lists) return <NoteTodos {...props} />
-        else if (props.note.text) return <NoteText {...props} />
+        else if (props.note.text || props.note.text === '') return <NoteText {...props} />
     }
 
 
     return (
 
-        <DynamicCmp onToggleReviewModalColor={onToggleReviewModalColor} isShowReviewModalColor={isShowReviewModalColor} togglePinned={togglePinned} cmpType={note.type} note={note} onRemove={onRemove} onEditNote={onEditNote} onSave={onSave} />
+        <DynamicCmp moveToTrashToggle={moveToTrashToggle} handleChangeTodosCheck={handleChangeTodosCheck} saveAsEmail={saveAsEmail} onToggleReviewModalColor={onToggleReviewModalColor} isShowReviewModalColor={isShowReviewModalColor} togglePinned={togglePinned} cmpType={note.type} note={note} onRemove={onRemove} onEditNote={onEditNote} onSave={onSave} />
 
     )
 }

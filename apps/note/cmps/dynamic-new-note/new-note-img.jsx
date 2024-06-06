@@ -1,3 +1,4 @@
+import { ColorPicker } from "./color-picker.jsx"
 export function NewNoteImg(props) {
     return (
         <section className="add-note-container">
@@ -12,7 +13,7 @@ export function NewNoteImg(props) {
                 <form onSubmit={props.onSave}>
                     <textarea autoFocus className="textarea-add-note url" id="text" name="imgUrl" value={props.note.imgUrl ? props.note.imgUrl : ''} placeholder="Enter url..." onChange={props.handleChange} />
 
-                    <textarea autoFocus className="textarea-add-note" id="text" name="imgUrl" value={props.note.imgUrl ? props.note.imgUrl : ''} placeholder="Enter text..." onChange={props.handleChange} />
+                    <textarea autoFocus className="textarea-add-note" id="text" name="text" value={props.note.text ? props.note.text : ''} placeholder="Enter text..." onChange={props.handleChange} />
                     <button className="note-save" >Save note</button>
                 </form>
 

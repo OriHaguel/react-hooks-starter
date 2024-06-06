@@ -20,7 +20,7 @@ export function NotesFilter({ filterBy, onSetFilter }) {
 
     return <form >
         <label htmlFor="subject"></label>
-        <input className="input-search-note" type="text" id="subject" name="text" onChange={handleOnChange} />
+        <input className="input-search-note" type="text" id="subject" name="text" placeholder="search keep.." onChange={handleOnChange} />
 
     </form>
 }
